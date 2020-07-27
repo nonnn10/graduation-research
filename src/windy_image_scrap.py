@@ -12,9 +12,15 @@ from selenium.webdriver.common.action_chains import ActionChains    #wendyの時
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+#日付取得
+import datetime as dt
 
 
 def main(driver):
+    #画像保存先のディレクトリパス
+    dir_pass = "../data/windy_img/"
+    now_date = create_date_dir(dir_pass)
+
     #sfile = driver.get_screenshot_as_file("../data/windy_img/File01.png")  #webサイトの表示サイズでスクリーン取得
     #print(sfile)
     time.sleep(3)
@@ -70,7 +76,9 @@ def main(driver):
         
         img_name = driver.find_element_by_css_selector("#progress-bar > div.timecode.main-timecode").text
         print(img_name)
-        sfile = driver.get_screenshot_as_file('../data/windy_img/'+img_name+'.png')
+        #
+        
+        sfile = driver.get_screenshot_as_file(dir_pass+now_date+'/'+img_name+'.png')
         print(sfile)
         #with open('../data/windy_img/'+img_name+'.png', 'wb') as f:
         #    f.write(png)
@@ -78,6 +86,29 @@ def main(driver):
     # ドライバーを終了
     driver.close()
     # driver.quit()
+
+def create_date_dir(dir_pass):
+    """
+    画像を取得した日付のディレクトリを作成
+    そのディレクトリに取得した画像を保存
+
+    parameters
+    ----------
+    dir_pass : str
+        固定のディレクトリ、日付ディレクトリの上層
+
+    return
+    ------
+    now_date : str
+        今日の日付
+    """
+    now_date = dt.datetime.now().strftime('%Y-%m-%d')   #日付の取得(2020-07-26)
+    #ディレクトリ作成
+    if not os.path.exists(dir_pass+now_date): #../data/windy_img/の階層に日付のディレクトリがないなら
+        os.makedirs(dir_pass+now_date, exist_ok=True)
+
+    return now_date
+
 if __name__ == '__main__':
     driver = exe.start_up(headless_active=False, web_url='https://www.windy.com/ja/-%E6%B3%A2-waves?waves,24.343,123.967,10')
     main(driver)

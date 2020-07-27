@@ -7,9 +7,12 @@ import glob             #ディレクトリのファイル一覧を取得する�
 import re
 import numpy as np
 import file_date
+import os
 
-s = "14:20\nｼ励ｻｼ倥ｻｼ呎怦縺ｮ縺ｿ驕玖穐"
-
-print(re.sub('(\d{1,2}):(\d{1,2})\n(.*)', r'\1:\2', s))
+date = dt.datetime.now().strftime('%Y-%m-%d')
+print(date)
+if not os.path.exists("../data/windy_img/"+date):
+            os.makedirs("../data/windy_img/"+date, exist_ok=True)
 #df = file_date.dfarray()
 #print(df)
+print("../data/windy_img/"+date)

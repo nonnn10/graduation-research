@@ -35,30 +35,35 @@ def main(driver):
     time_num = {
         0 : 23,
         1 : 30,
-        2 : 36,
+        2 : 100,#36
         3 : 43,
         4 : 50,
         5 : 60
     }
     
     time.sleep(2)
-    print("ヤッホ")
-    #driver = exe.start_up(headless_active=True, web_url='https://www.windy.com/ja/-%E6%B3%A2-waves?waves,24.343,123.967,10')
-    #driver.set_window_size(1200, 850)
-    time.sleep(2)
-    elements = driver.find_elements_by_class_name("played")
-    loc = elements[0].location
-    x, y = loc['x'], loc['y']
-    for i in range(1,6):
+
+    for i in range(0,6):
         try:
+            print("ヤッホ")
+            driver = exe.start_up(headless_active=True, web_url='https://www.windy.com/ja/-%E6%B3%A2-waves?waves,24.343,123.967,10')
+            time.sleep(2)
+            driver.set_window_size(1200, 850)
+            time.sleep(2)
+            elements = driver.find_elements_by_class_name("played")
+            loc = elements[0].location
+            x, y = loc['x'], loc['y']
             x = time_num[i]
+            print("座標xの値"+str(x))
             actions = ActionChains(driver)
             actions.move_by_offset(x, y)
             actions.click()
             actions.perform()
         except Exception:
             #driver.close()
+            print("エラー")
             driver = exe.start_up(headless_active=True, web_url='https://www.windy.com/ja/-%E6%B3%A2-waves?waves,24.343,123.967,10')
+            time.sleep(2)
             driver.set_window_size(1200, 850)
             time.sleep(2)
             elements = driver.find_elements_by_class_name("played")
@@ -71,12 +76,11 @@ def main(driver):
             actions.perform()
         time.sleep(3)
         #https://m4usta13ng.hatenablog.com/entry/20181118_py_selenium_screenshot
-        WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.CLASS_NAME, "leaflet-canvas")))
+        #WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.CLASS_NAME, "leaflet-canvas")))
         #png = driver.find_element_by_class_name("leaflet-canvas").screenshot_as_png
         
         img_name = driver.find_element_by_css_selector("#progress-bar > div.timecode.main-timecode").text
         print(img_name)
-        #
         
         sfile = driver.get_screenshot_as_file(dir_pass+now_date+'/'+img_name+'.png')
         print(sfile)

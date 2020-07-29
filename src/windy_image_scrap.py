@@ -1,4 +1,7 @@
 """
+スクリーンショット : #https://m4usta13ng.hatenablog.com/entry/20181118_py_selenium_screenshot
+for文によるerror,ActionChains解決 : https://kurozumi.github.io/selenium-python/api.html#selenium.webdriver.common.action_chains.ActionChains.reset_actions
+
 windy.comから画像をスクレイピングする
 """
 from selenium import webdriver
@@ -14,6 +17,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 #日付取得
 import datetime as dt
+#正規表現置換
+import re
 
 
 def main(driver):
@@ -33,55 +38,33 @@ def main(driver):
     #参考
     #https://qiita.com/motoki1990/items/a59a09c5966ce52128be
     time_num = {
-        0 : 23,
-        1 : 30,
-        2 : 100,#36
-        3 : 43,
-        4 : 50,
-        5 : 60
+        0 : 23,#7:00
+        1 : 30,#9:00
+        2 : 38,#11:00
+        3 : 43,#13:00
+        4 : 50,#15:00
+        5 : 60 #17:00
     }
-    
-    time.sleep(2)
+
+    # driver.close()
 
     for i in range(0,6):
         try:
-            print("ヤッホ")
-            driver = exe.start_up(headless_active=True, web_url='https://www.windy.com/ja/-%E6%B3%A2-waves?waves,24.343,123.967,10')
-            time.sleep(2)
-            driver.set_window_size(1200, 850)
-            time.sleep(2)
-            elements = driver.find_elements_by_class_name("played")
-            loc = elements[0].location
-            x, y = loc['x'], loc['y']
-            x = time_num[i]
-            print("座標xの値"+str(x))
-            actions = ActionChains(driver)
-            actions.move_by_offset(x, y)
-            actions.click()
-            actions.perform()
+            error=False
+            mouse_move(time_num,i,error)
         except Exception:
-            #driver.close()
-            print("エラー")
-            driver = exe.start_up(headless_active=True, web_url='https://www.windy.com/ja/-%E6%B3%A2-waves?waves,24.343,123.967,10')
-            time.sleep(2)
-            driver.set_window_size(1200, 850)
-            time.sleep(2)
-            elements = driver.find_elements_by_class_name("played")
-            loc = elements[0].location
-            x, y = loc['x'], loc['y']
-            x = time_num[i]
-            actions = ActionChains(driver)
-            actions.move_by_offset(x, y)
-            actions.click()
-            actions.perform()
+            error = True
+            mouse_move(time_num,i,error)
         time.sleep(3)
-        #https://m4usta13ng.hatenablog.com/entry/20181118_py_selenium_screenshot
-        #WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.CLASS_NAME, "leaflet-canvas")))
+        
+        WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.CLASS_NAME, "leaflet-canvas")))
         #png = driver.find_element_by_class_name("leaflet-canvas").screenshot_as_png
         
         img_name = driver.find_element_by_css_selector("#progress-bar > div.timecode.main-timecode").text
+        #print(img_name)
+        #file名の変更
+        img_name = re.sub(r'(.*)(\d{1}:\d{2})\n(.*)', r'\1\2',img_name)
         print(img_name)
-        
         sfile = driver.get_screenshot_as_file(dir_pass+now_date+'/'+img_name+'.png')
         print(sfile)
         #with open('../data/windy_img/'+img_name+'.png', 'wb') as f:
@@ -90,6 +73,49 @@ def main(driver):
     # ドライバーを終了
     driver.close()
     # driver.quit()
+
+def mouse_move(time_num,i,error=False):
+    """
+    任意の時間にマウスを移動させる
+    
+    parameters
+    ----------
+    time_num : dictionary
+        スクリーンショットを取得したい時間帯の辞書
+    i : int
+        time_numの時間帯を指定する
+    error : bool
+        try構文での判定により動きを変更する
+    """
+    if error == False:
+        print("No error")
+        time.sleep(2)
+        driver.set_window_size(1200, 850)
+        time.sleep(2)
+        elements = driver.find_elements_by_class_name("played")
+        loc = elements[0].location
+        x, y = loc['x'], loc['y']
+        x += time_num[i]
+        print("座標xの値"+str(x))
+        actions = ActionChains(driver)
+        actions.move_by_offset(x, y)
+        actions.click()
+        actions.perform()
+    elif error == True:
+        print("エラー")
+        time.sleep(2)
+        driver.set_window_size(1200, 850)
+        time.sleep(2)
+        elements = driver.find_elements_by_class_name("played")
+        loc = elements[0].location
+        x, y = loc['x'], loc['y']
+        x += time_num[i]
+        print("座標xの値"+str(x))
+        actions = ActionChains(driver)
+        actions.reset_actions()
+        actions.move_by_offset(x, y)
+        actions.click()
+        actions.perform()
 
 def create_date_dir(dir_pass):
     """

@@ -48,7 +48,7 @@ def start_up (headless_active,web_url):
     
     """
     options = Options()
-    if headless_active == True:    
+    if headless_active == True:
         options.add_argument('--headless')          #ヘッドレスモードのオプション
     #絶対パスでドライバーの場所を指定
     driver = webdriver.Chrome('../ChromeDriver/chromedriver',options=options)

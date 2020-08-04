@@ -40,81 +40,40 @@ def main(driver):
 
     #参考
     #https://qiita.com/motoki1990/items/a59a09c5966ce52128be
-    day1_time_num = {
-        0 : 23,#7:00
-        1 : 30,#9:00
-        2 : 38,#11:00
-        3 : 43,#13:00
-        4 : 50,#15:00
-        5 : 60,#17:00
-    }
-    day2_time_num = {
-        0 : 105,
-        1 : 112,
-        2 : 120,
-        3 : 127,
-        4 : 135,
-        5 : 142,
-    }
-    day3_time_num = {
-        0 : 189,
-        1 : 197,
-        2 : 204,
-        3 : 211,
-        4 : 217,
-        5 : 222
-    }
-    day4_time_num = {
-        0 : 271,
-        1 : 278,
-        2 : 285,
-        3 : 292,
-        4 : 298,
-        5 : 305
-    }
-    day5_time_num = {
-        0 : 354,
-        1 : 328,
-        2 : 335,
-        3 : 342,
-        4 : 349,
-        5 : 356
-    }
-
-
-
+    
     # driver.close()
     #img_dateの初期化
     img_date = 0
+    date_all = date_list()
+    
 
-    time_num = day5_time_num
+    for i in range(0,len(date_all)):
+        for j in range(0,len(date_all[i])):
+            try:
+                error=False
+                mouse_move(date_all[i],j,driver,error)
+            except Exception:
+                error = True
+                mouse_move(date_all[i],j,driver,error)
+            time.sleep(3)
+            
+            #WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.CLASS_NAME, "leaflet-canvas")))
+            #png = driver.find_element_by_class_name("leaflet-canvas").screenshot_as_png
+            
+            #img_nameの
+            img_name = driver.find_element_by_css_selector("#progress-bar > div.timecode.main-timecode").text
+            #print(img_name)
+            
+            #ここに関数
+            img_name_date = file_name_date(img_name,img_date,yaer,month)
 
-    for i in range(0,len(time_num)):
-        try:
-            error=False
-            mouse_move(time_num,i,driver,error)
-        except Exception:
-            error = True
-            mouse_move(time_num,i,driver,error)
-        time.sleep(3)
-        
-        #WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.CLASS_NAME, "leaflet-canvas")))
-        #png = driver.find_element_by_class_name("leaflet-canvas").screenshot_as_png
-        
-        #img_nameの
-        img_name = driver.find_element_by_css_selector("#progress-bar > div.timecode.main-timecode").text
-        #print(img_name)
-        
-        #ここに関数
-        img_name_date = file_name_date(img_name,img_date,yaer,month)
-
-        # img_date = re.sub(r'(.*) (\d{1,2}) - (\d{1,2}:\d{2})', r'\2',img_name)
-        # print(img_name)
-        print(img_name_date)
-        sfile = driver.get_screenshot_as_file(dir_pass+now_date+'/'+str(img_name_date)+'.png')
-        print(sfile)
-        #with open('../data/windy_img/'+img_name+'.png', 'wb') as f:
-        #    f.write(png)
+            # img_date = re.sub(r'(.*) (\d{1,2}) - (\d{1,2}:\d{2})', r'\2',img_name)
+            # print(img_name)
+            print(img_name_date)
+            sfile = driver.get_screenshot_as_file(dir_pass+now_date+'/'+str(img_name_date)+'.png')
+            print(sfile)
+            #with open('../data/windy_img/'+img_name+'.png', 'wb') as f:
+            #    f.write(png)
 
     # ドライバーを終了
     driver.close()
@@ -223,6 +182,95 @@ def file_name_date(img_name,img_date,yaer,month):
         img_name_date = img_name_date + relativedelta(months=1)         #次の月にするための計算
 
     return img_name_date
+
+def date_list():
+    """
+    日付、時間のx軸の値
+    """
+    day1_time_num = {
+        0 : 23,#7:00
+        1 : 30,#9:00
+        2 : 38,#11:00
+        3 : 43,#13:00
+        4 : 50,#15:00
+        5 : 60,#17:00
+    }
+    day2_time_num = {
+        0 : 105,
+        1 : 112,
+        2 : 120,
+        3 : 127,
+        4 : 135,
+        5 : 142,
+    }
+    day3_time_num = {
+        0 : 189,
+        1 : 197,
+        2 : 204,
+        3 : 211,
+        4 : 217,
+        5 : 222
+    }
+    day4_time_num = {
+        0 : 271,
+        1 : 278,
+        2 : 285,
+        3 : 292,
+        4 : 298,
+        5 : 305
+    }
+    day5_time_num = {
+        0 : 354,
+        1 : 361,
+        2 : 368,
+        3 : 375,
+        4 : 382,
+        5 : 389
+    }
+    day6_time_num = {
+        0 : 438,
+        1 : 445,
+        2 : 452,
+        3 : 457,
+        4 : 464,
+        5 : 471
+    }
+    day7_time_num = {
+        0 : 520,
+        1 : 527,
+        2 : 534,
+        3 : 541,
+        4 : 548,
+        5 : 555
+    }
+    day8_time_num = {
+        0 : 600,
+        1 : 607,
+        2 : 614,
+        3 : 621,
+        4 : 628,
+        5 : 635
+    }
+    day9_time_num = {
+        0 : 684,
+        1 : 691,
+        2 : 698,
+        3 : 705,
+        4 : 712,
+        5 : 719
+    }
+    day10_time_num = {
+        0 : 765,
+        1 : 772,
+        2 : 779,
+    }
+    date_all = [day1_time_num,day2_time_num,
+                day3_time_num,day4_time_num,
+                day5_time_num,day6_time_num,
+                day7_time_num,day8_time_num,
+                day9_time_num,day10_time_num]
+    return date_all
+
 
 if __name__ == '__main__':
     driver = exe.start_up(headless_active=True, web_url='https://www.windy.com/ja/-%E6%B3%A2-waves?waves,24.343,123.967,10')

@@ -27,7 +27,9 @@ import re
 def main(driver):
     #画像保存先のディレクトリパス
     dir_pass = "../data/windy_img/"
-    now_date = create_date_dir(dir_pass)    #ディレクトリ作成
+    atribute = "wind_speed"
+    print(atribute)
+    now_date = create_date_dir(dir_pass,atribute)    #ディレクトリ作成
     #画像ファイル名の作成に必要
     month = re.sub(r'(\d*)-(\d*)-(\d*)', r'\2',now_date)
     yaer = re.sub(r'(\d*)-(\d*)-(\d*)', r'\1',now_date)
@@ -70,14 +72,14 @@ def main(driver):
             # img_date = re.sub(r'(.*) (\d{1,2}) - (\d{1,2}:\d{2})', r'\2',img_name)
             # print(img_name)
             print(img_name_date)
-            sfile = driver.get_screenshot_as_file(dir_pass+now_date+'/'+str(img_name_date)+'.png')
+            sfile = driver.get_screenshot_as_file(dir_pass+now_date+'/'+atribute+'/'+str(img_name_date)+'.png')
             print(sfile)
             #with open('../data/windy_img/'+img_name+'.png', 'wb') as f:
             #    f.write(png)
 
     # ドライバーを終了
     driver.close()
-    # driver.quit()
+    driver.quit()
 
 def mouse_move(time_num,i,driver,error=False):
     """
@@ -122,7 +124,7 @@ def mouse_move(time_num,i,driver,error=False):
         actions.click()
         actions.perform()
 
-def create_date_dir(dir_pass):
+def create_date_dir(dir_pass,atribute):
     """
     画像を取得した日付のディレクトリを作成
     そのディレクトリに取得した画像を保存
@@ -131,6 +133,8 @@ def create_date_dir(dir_pass):
     ----------
     dir_pass : str
         固定のディレクトリ、日付ディレクトリの上層
+    atribute : str
+        風、波のいずれか
 
     return
     ------
@@ -141,6 +145,9 @@ def create_date_dir(dir_pass):
     #ディレクトリ作成
     if not os.path.exists(dir_pass+now_date): #../data/windy_img/の階層に日付のディレクトリがないなら
         os.makedirs(dir_pass+now_date, exist_ok=True)
+    if not os.path.exists(dir_pass+now_date+"/"+atribute): #../data/windy_img/日付/の階層にatiributeのディレクトリがないなら
+        os.makedirs(dir_pass+now_date+"/"+atribute, exist_ok=True)
+    print(dir_pass+now_date+"/"+atribute)
 
     return now_date
 
@@ -161,7 +168,7 @@ def file_name_date(img_name,img_date,yaer,month):
 
     return
     ------
-    img_name_date : str
+    img_name_date : datetime
         画像のファイル名
     """
     #file名の変更
@@ -273,7 +280,9 @@ def date_list():
 
 
 if __name__ == '__main__':
-    driver = exe.start_up(headless_active=True, web_url='https://www.windy.com/ja/-%E6%B3%A2-waves?waves,24.343,123.967,10')
+    driver = exe.start_up(headless_active=True, web_url='https://www.windy.com/?24.343,123.967,10')
     main(driver)
-    
+    #https://www.windy.com/?24.343,123.967,10  風
+    #https://www.windy.com/ja/-%E6%B3%A2-waves?waves,24.343,123.967,10  波
+
     #https://www.windy.com/ja/-%E6%B3%A2-waves?waves,24.343,123.967,10,i:pressure,m:elVajBL

@@ -1,7 +1,7 @@
 """
 datetimeに関するサイト : https://qiita.com/xza/items/9618e25a8cb08c44cdb0#python-標準時刻関連ライブラリ
 datetimeの比較 : https://qiita.com/mSpring/items/6ec1ab28dcb261db2c73
-
+dateutil install : https://dateutil.readthedocs.io/en/stable/index.html
 
 やり残してるところ
 日付比較のところ何々以上入るけど何々未満はいらないのでは？

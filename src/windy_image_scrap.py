@@ -24,10 +24,10 @@ import re
 
 
 
-def main(driver):
+def main(driver,atribute):
     #画像保存先のディレクトリパス
     dir_pass = "../data/windy_img/"
-    atribute = "wind_speed"
+    #atribute = "wind_speed"
     print(atribute)
     now_date = create_date_dir(dir_pass,atribute)    #ディレクトリ作成
     #画像ファイル名の作成に必要
@@ -127,6 +127,7 @@ def mouse_move(time_num,i,driver,error=False):
 def create_date_dir(dir_pass,atribute):
     """
     画像を取得した日付のディレクトリを作成
+    日付ディレクトリの下に風速、波高ディレクトリ
     そのディレクトリに取得した画像を保存
 
     parameters
@@ -280,8 +281,12 @@ def date_list():
 
 
 if __name__ == '__main__':
-    driver = exe.start_up(headless_active=True, web_url='https://www.windy.com/?24.343,123.967,10')
-    main(driver)
+    
+    atri = {"wind_speed":"https://www.windy.com/?24.343,123.967,10",
+            "wave_height":"https://www.windy.com/ja/-%E6%B3%A2-waves?waves,24.343,123.967,10"}
+    for i, (key,value) in enumerate(atri.items()):
+        driver = exe.start_up(headless_active=True, web_url=value)
+        main(driver,key)
     #https://www.windy.com/?24.343,123.967,10  風
     #https://www.windy.com/ja/-%E6%B3%A2-waves?waves,24.343,123.967,10  波
 

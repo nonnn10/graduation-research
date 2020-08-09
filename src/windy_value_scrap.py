@@ -34,27 +34,28 @@ def main(driver,atribute):
 
     time.sleep(3)
     # ウィンドウサイズを設定
-    driver.set_window_size(1800, 850)
+    driver.set_window_size(2000, 850)
 
     buttun = driver.find_element_by_css_selector("#detail > div.table-wrapper.show.noselect.notap > div.data-table.noselect.flex-container > div.forecast-table.progress-bar > div.fg-red.size-xs.inlined.clickable")
     buttun.click()
-
+    time.sleep(10)
     #wind_table = driver.find_element_by_css_selector("#detail-data-table > tbody > tr.td-windCombined.height-windCombined.d-display-waves")
     #print(wind_table.text())
     wait = WebDriverWait(driver, 10)
     wind_table = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, '#detail-data-table > tbody > tr.td-windCombined.height-windCombined.d-display-waves')))
     #wait = WebDriverWait(wind_table, 20)
-    aa = wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, 'td')))
-    #aa = wind_table.find_elements_by_tag_name('td')
-    print("tdの数"+str(len(aa)))
+    #wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, 'td')))
+    #aa = wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, "td-windCombined")))
+    wind_val = wind_table.find_elements_by_tag_name('td')
+    print("tdの数"+str(len(wind_val)))
     #wait = WebDriverWait(driver, 10)
     
-    print(aa[0].text)
-    print(aa[1].find_element_by_tag_name("div").text)
-    for i in range(0,len(aa)):
+    print(wind_val[0].text)
+    #print(aa[1].find_element_by_tag_name("div").text)
+    for i in range(0,len(wind_val)):
         #wind_col = wind_table[i].find_element_by_tag_name('td')
         print("せいこう"+"  "+str(i))
-        print(aa[i].text)
+        print(wind_val[i].text)
     # ドライバーを終了
     #driver.close()
     #driver.quit()

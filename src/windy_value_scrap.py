@@ -34,7 +34,7 @@ def main(driver,atribute):
 
     time.sleep(3)
     # ウィンドウサイズを設定
-    driver.set_window_size(1200, 850)
+    driver.set_window_size(1000, 850)
 
     # ドライバーを終了
     #driver.close()
@@ -42,8 +42,8 @@ def main(driver,atribute):
 
 
 if __name__ == "__main__":
-    atri = {"wind_speed":"https://www.windy.com/?24.343,123.967,10",
-            "wave_height":"https://www.windy.com/ja/-%E6%B3%A2-waves?waves,24.343,123.967,10"}
+    atri = {"value":"https://www.windy.com/24.435/124.004/waves?waves,24.344,123.967,10"}
+            #"wave_height":"https://www.windy.com/24.435/124.004/waves?waves,24.344,123.967,10"}
     for i, (key,value) in enumerate(atri.items()):
         driver = exe.start_up(headless_active=False, web_url=value)
         main(driver,key)

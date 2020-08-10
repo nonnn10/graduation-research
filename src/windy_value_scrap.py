@@ -38,28 +38,56 @@ def main(driver,atribute):
 
     buttun = driver.find_element_by_css_selector("#detail > div.table-wrapper.show.noselect.notap > div.data-table.noselect.flex-container > div.forecast-table.progress-bar > div.fg-red.size-xs.inlined.clickable")
     buttun.click()
+    #ボタンを押すまで待機
     time.sleep(10)
     #wind_table = driver.find_element_by_css_selector("#detail-data-table > tbody > tr.td-windCombined.height-windCombined.d-display-waves")
     #print(wind_table.text())
+    #要素が出現するまで待機
     wait = WebDriverWait(driver, 10)
+
+    val_roup(wait,'#detail-data-table > tbody > tr.td-waves.height-waves.d-display-waves')
+
     wind_table = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, '#detail-data-table > tbody > tr.td-windCombined.height-windCombined.d-display-waves')))
+
+    wave_table = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, '#detail-data-table > tbody > tr.td-waves.height-waves.d-display-waves')))
     #wait = WebDriverWait(wind_table, 20)
     #wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, 'td')))
     #aa = wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, "td-windCombined")))
     wind_val = wind_table.find_elements_by_tag_name('td')
-    print("tdの数"+str(len(wind_val)))
+
+    wave_val = wave_table.find_elements_by_tag_name('td')
+    print("tdの数"+str(len(wave_val)))
     #wait = WebDriverWait(driver, 10)
     
-    print(wind_val[0].text)
+    print(wave_val[0].text)
     #print(aa[1].find_element_by_tag_name("div").text)
-    for i in range(0,len(wind_val)):
+    #for i in range(0,len(wave_val)):
         #wind_col = wind_table[i].find_element_by_tag_name('td')
-        print("せいこう"+"  "+str(i))
-        print(wind_val[i].text)
+        #print("せいこう"+"  "+str(i))
+        #print(wave_val[i].text)
     # ドライバーを終了
     #driver.close()
     #driver.quit()
 
+def val_roup(wait, css_selector):
+    """
+    trの中のtdを標準出力
+
+    paramerter
+    ----------
+    wait : WebDriverWait
+        待機時間
+    css_selector : str
+        出力する行のCSSセレクタ
+
+    """
+    val_table = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, css_selector)))
+    val = val_table.find_elements_by_tag_name('td')
+    print("tdの数"+str(len(val)))
+    for i in range(0,len(val)):
+        #wind_col = wind_table[i].find_element_by_tag_name('td')
+        print("せいこう"+" 　"+str(i))
+        print(val[i].text)
 
 if __name__ == "__main__":
     atri = {"value":"https://www.windy.com/24.435/124.004/waves?waves,24.344,123.967,10"}

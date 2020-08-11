@@ -1,5 +1,5 @@
 """
-スクリーンショット : #https://m4usta13ng.hatenablog.com/entry/20181118_py_selenium_screenshot
+スクリーンショット : #https://m4usta13ng.hatnablog.com/entry/20181118_py_selenium_screenshot
 for文によるerror,ActionChains解決 : https://kurozumi.github.io/selenium-python/api.html#selenium.webdriver.common.action_chains.ActionChains.reset_actions
 
 windy.comから画像をスクレイピングする

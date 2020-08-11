@@ -56,16 +56,26 @@ def main(driver,atribute):
         "swell_spacing": "#detail-data-table > tbody > tr.td-swell1Period.height-swell1Period.d-display-waves" 
     }
     #for文に直す予定
-    dic_list = list(val_dic.items())
-    atir_num = 2
+    for i, (key,value) in enumerate(val_dic.items()):
+        #dic_list = list(val_dic.items())
 
-    #引数のatributeにval_dicのkey
-    wis.create_date_dir(dir_pass,atribute,date=False)    #ディレクトリ作成
+        #引数のatributeにval_dicのkey
+        wis.create_date_dir(dir_pass,key,date=False)    #ディレクトリ作成
 
-    val_row = val_roup(wait,dic_list[atir_num][0],dic_list[atir_num][1])
-    print(val_row)
+        val_row = val_roup(wait,key,value)
+        print(val_row)
+        if key == "wind_speed":
+            #if文でwind_apeedなら
+            wind_speed = []
+            max_wind_speed = []
+            for i in range(0,len(val_row)):
+                wind_speed.append(val_row[i][0])
+                max_wind_speed.append(val_row[i][1])
+            print("wind_speed")
+            print(wind_speed)
+            print("max_wind_speed")
+            print(max_wind_speed)
 
-    
     wind_table = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, '#detail-data-table > tbody > tr.td-windCombined.height-windCombined.d-display-waves')))
 
     wave_table = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, '#detail-data-table > tbody > tr.td-waves.height-waves.d-display-waves')))
@@ -115,7 +125,8 @@ def val_roup(wait, value, css_selector):
             #wind_col = wind_table[i].find_element_by_tag_name('td')
             print("せいこう"+" 　"+str(i))
             print(val[i].get_attribute("data-day"))
-            val_list.append(val[i].get_attribute("data-day"))
+            der_val = newline_spl(val[i].get_attribute("data-day"))
+            val_list.append(der_val)
     else:
         val = val_table.find_elements_by_tag_name('td')
         print("tdの数"+str(len(val)))
@@ -123,7 +134,8 @@ def val_roup(wait, value, css_selector):
             #wind_col = wind_table[i].find_element_by_tag_name('td')
             print("せいこう"+" 　"+str(i))
             print(val[i].text)
-            val_list.append(val[i].text)
+            der_val = newline_spl(val[i].text)
+            val_list.append(der_val)
     
     return val_list
 
@@ -135,6 +147,11 @@ def newline_spl(value):
     ----------
     value : str
         改行文字の入った文字列
+    
+    return
+    ------
+    value : list
+        改行と#を削除した配列
     """
     #a="#\n24\n30"
     value = value.splitlines()

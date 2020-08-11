@@ -29,7 +29,8 @@ def main(driver,atribute):
     dir_pass = "../data/windy_img/"
     #atribute = "wind_speed"
     print(atribute)
-    now_date = create_date_dir(dir_pass,atribute)    #ディレクトリ作成
+    now_date = now_date_cre()
+    create_date_dir(dir_pass,atribute)    #ディレクトリ作成
     #画像ファイル名の作成に必要
     month = re.sub(r'(\d*)-(\d*)-(\d*)', r'\2',now_date)
     yaer = re.sub(r'(\d*)-(\d*)-(\d*)', r'\1',now_date)
@@ -124,7 +125,19 @@ def mouse_move(time_num,i,driver,error=False):
         actions.click()
         actions.perform()
 
-def create_date_dir(dir_pass,atribute):
+def now_date_cre():
+    """
+    プログラム実行時の日付を返す関数
+
+    return
+    ------
+    now_date : datetime
+        プログラム実行時の日付を取得
+    """
+    now_date = dt.datetime.now().strftime('%Y-%m-%d')   #日付の取得(2020-07-26)
+    return now_date
+
+def create_date_dir(dir_pass,atribute,date=True):
     """
     画像を取得した日付のディレクトリを作成
     日付ディレクトリの下に風速、波高ディレクトリ
@@ -136,21 +149,25 @@ def create_date_dir(dir_pass,atribute):
         固定のディレクトリ、日付ディレクトリの上層
     atribute : str
         風、波のいずれか
-
-    return
-    ------
-    now_date : str
-        今日の日付
+    date : bool
+        日付をディレクトリに含めない時
     """
-    now_date = dt.datetime.now().strftime('%Y-%m-%d')   #日付の取得(2020-07-26)
-    #ディレクトリ作成
-    if not os.path.exists(dir_pass+now_date): #../data/windy_img/の階層に日付のディレクトリがないなら
-        os.makedirs(dir_pass+now_date, exist_ok=True)
-    if not os.path.exists(dir_pass+now_date+"/"+atribute): #../data/windy_img/日付/の階層にatiributeのディレクトリがないなら
-        os.makedirs(dir_pass+now_date+"/"+atribute, exist_ok=True)
-    print(dir_pass+now_date+"/"+atribute)
 
-    return now_date
+    atribute = "/"+atribute
+    #ディレクトリ作成
+    if date == True:
+        now_date = dt.datetime.now().strftime('%Y-%m-%d')   #日付の取得(2020-07-26)   
+        if not os.path.exists(dir_pass+now_date): #../data/windy_img/の階層に日付のディレクトリがないなら
+            os.makedirs(dir_pass+now_date, exist_ok=True)
+        if not os.path.exists(dir_pass+now_date+atribute): #../data/windy_img/日付/の階層にatiributeのディレクトリがないなら
+            os.makedirs(dir_pass+now_date+atribute, exist_ok=True)
+        print(dir_pass+now_date+atribute)
+    elif date == False:
+        dir_pass = dir_pass+atribute    #ディレクトリパス最後にatributeを追加
+        dir_list = dir_pass.split("/")  #ディレクトリパスを"/"で分割
+        for i in range(1,len(dir_list)):#ディレクトリ階層の数だけループ,最初に../がある想定
+            if not os.path.exists("/".join(dir_list[0:i])):             #ディレクトリ階層が存在するかチェック
+                os.makedirs("/".join(dir_list[0:i]), exist_ok=True)     #存在しないなら作成
 
 def file_name_date(img_name,img_date,yaer,month):
     """

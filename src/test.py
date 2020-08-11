@@ -9,10 +9,16 @@ import numpy as np
 import file_date
 import os
 
-date = dt.datetime.now().strftime('%Y-%m-%d')
-print(date)
-if not os.path.exists("../data/windy_img/"+date):
-            os.makedirs("../data/windy_img/"+date, exist_ok=True)
-#df = file_date.dfarray()
-#print(df)
-print("../data/windy_img/"+date)
+a=["#\n24\n30"]
+#a=["23"]
+a=a[0].splitlines()
+print(a)
+try:
+    a.remove("#")
+    print(type(a))
+except ValueError as e:
+    print(e)
+
+
+
+print(a)

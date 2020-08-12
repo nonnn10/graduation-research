@@ -8,17 +8,11 @@ import re
 import numpy as np
 import file_date
 import os
+import windy_image_scrap as wis
 
-a=["#\n24\n30"]
-#a=["23"]
-a=a[0].splitlines()
-print(a)
-try:
-    a.remove("#")
-    print(type(a))
-except ValueError as e:
-    print(e)
+dir_pass = "../data/windy_value/"
+key = "date"
+wis.create_date_dir(dir_pass,atribute=key,date=False)
 
 
-
-print(a)
+#print()

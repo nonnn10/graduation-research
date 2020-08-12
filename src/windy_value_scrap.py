@@ -60,21 +60,33 @@ def main(driver,atribute):
         #dic_list = list(val_dic.items())
 
         #引数のatributeにval_dicのkey
-        wis.create_date_dir(dir_pass,key,date=False)    #ディレクトリ作成
+        wis.create_date_dir(dir_pass,atribute=key,date=False)    #ディレクトリ作成
 
         val_row = val_roup(wait,key,value)
         print(val_row)
+        #csvfileに記述
+        file_name = "windy_val_"+key     #fileの名前をwindy_val_date,windy_val_time_hourなどにする
+        write_mode = "a"
+        print(dir_pass+key)
+        #引数のatributeにval_dicのkey
+
         if key == "wind_speed":
             #if文でwind_apeedなら
-            wind_speed = []
-            max_wind_speed = []
-            for i in range(0,len(val_row)):
-                wind_speed.append(val_row[i][0])
-                max_wind_speed.append(val_row[i][1])
-            print("wind_speed")
-            print(wind_speed)
-            print("max_wind_speed")
-            print(max_wind_speed)
+            wind_speed,max_wind_speed = wind_speed_dedi(val_row)
+            wind_name = ["wind_speed","max_wind_speed"]             #fileの名前のための配列
+            for i, wind_lists in enumerate([wind_speed,max_wind_speed]):
+                file_name = "windy_val_"+wind_name[i]
+                wis.create_date_dir(dir_pass,atribute=wind_name[i],date=False)    #ディレクトリ作成
+
+                with open(dir_pass+"/"+key+"/"+file_name+".csv", write_mode, encoding='UTF-8', errors='ignore') as f:
+                    writer = csv.writer(f, lineterminator='\n')            
+                    writer.writerow(wind_lists)
+        else:
+            wis.create_date_dir(dir_pass,atribute=key,date=False)    #ディレクトリ作成
+
+            with open(dir_pass+key+"/"+file_name+".csv", write_mode, encoding='UTF-8', errors='ignore') as f:
+                writer = csv.writer(f, lineterminator='\n')            
+                writer.writerow(val_row)
 
     wind_table = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, '#detail-data-table > tbody > tr.td-windCombined.height-windCombined.d-display-waves')))
 
@@ -123,8 +135,8 @@ def val_roup(wait, value, css_selector):
         print("tdの数"+str(len(val)))
         for i in range(0,len(val)):
             #wind_col = wind_table[i].find_element_by_tag_name('td')
-            print("せいこう"+" 　"+str(i))
-            print(val[i].get_attribute("data-day"))
+            #print("せいこう"+" 　"+str(i))
+            #print(val[i].get_attribute("data-day"))
             der_val = newline_spl(val[i].get_attribute("data-day"))
             val_list.append(der_val)
     else:
@@ -132,8 +144,8 @@ def val_roup(wait, value, css_selector):
         print("tdの数"+str(len(val)))
         for i in range(0,len(val)):
             #wind_col = wind_table[i].find_element_by_tag_name('td')
-            print("せいこう"+" 　"+str(i))
-            print(val[i].text)
+            #print("せいこう"+" 　"+str(i))
+            #print(val[i].text)
             der_val = newline_spl(val[i].text)
             val_list.append(der_val)
     
@@ -162,6 +174,36 @@ def newline_spl(value):
         pass
 
     return value
+
+def wind_speed_dedi(val_row):
+    """
+    val_roup()で取得した風速の部分は値が風速と最大風速の二つあるため処理が必要
+
+    parameters
+    ----------
+    val_row : list
+        取得した値の入った配列,予定では64個ある
+
+    return
+    ------
+    wind_speed : list
+        風速の配列
+    max_wind_speed : list
+        最大風速の配列
+    """
+    wind_speed = []
+    max_wind_speed = []
+    for i in range(0,len(val_row)):
+        wind_speed.append(val_row[i][0])
+        max_wind_speed.append(val_row[i][1])
+    print("wind_speed")
+    print("tdの数"+str(len(wind_speed)))
+    print(wind_speed)
+    print("max_wind_speed")
+    print("tdの数"+str(len(max_wind_speed)))
+    print(max_wind_speed)
+
+    return wind_speed, max_wind_speed
 
 if __name__ == "__main__":
     atri = {"value":"https://www.windy.com/24.435/124.004/waves?waves,24.344,123.967,10"}

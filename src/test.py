@@ -10,7 +10,7 @@ import file_date
 import os
 import windy_image_scrap as wis
 
-dir_pass = "../data/windy_value/"
+dir_pass = "../data/windy_value"
 key = "date"
 wis.create_date_dir(dir_pass,atribute=key,date=False)
 

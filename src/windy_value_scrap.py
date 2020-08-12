@@ -21,10 +21,12 @@ import datetime as dt
 from dateutil.relativedelta import relativedelta
 #正規表現置換
 import re
+#2次元配列を1次元にするために
+import itertools
 
 def main(driver,atribute):
     #画像保存先のディレクトリパス
-    dir_pass = "../data/windy_value/"
+    dir_pass = "../data/windy_value"
     #atribute = "wind_speed"
     print(atribute)
     now_date = wis.now_date_cre()       #プログラム実行時の日付
@@ -78,15 +80,17 @@ def main(driver,atribute):
                 file_name = "windy_val_"+wind_name[i]
                 wis.create_date_dir(dir_pass,atribute=wind_name[i],date=False)    #ディレクトリ作成
 
-                with open(dir_pass+"/"+key+"/"+file_name+".csv", write_mode, encoding='UTF-8', errors='ignore') as f:
-                    writer = csv.writer(f, lineterminator='\n')            
-                    writer.writerow(wind_lists)
+                # with open(dir_pass+"/"+wind_name[i]+"/"+file_name+".csv", write_mode, encoding='UTF-8', errors='ignore') as f:
+                #     writer = csv.writer(f, lineterminator='\n')            
+                #     writer.writerow(wind_lists)
+                csv_write(dir_pass+"/"+wind_name[i]+"/"+file_name+".csv",write_mode,wind_lists)
         else:
             wis.create_date_dir(dir_pass,atribute=key,date=False)    #ディレクトリ作成
-
-            with open(dir_pass+key+"/"+file_name+".csv", write_mode, encoding='UTF-8', errors='ignore') as f:
-                writer = csv.writer(f, lineterminator='\n')            
-                writer.writerow(val_row)
+            val_row = list(itertools.chain.from_iterable(val_row))
+            # with open(dir_pass+"/"+key+"/"+file_name+".csv", write_mode, encoding='UTF-8', errors='ignore') as f:
+            #     writer = csv.writer(f, lineterminator='\n')            
+            #     writer.writerow(val_row)
+            csv_write(dir_pass+"/"+key+"/"+file_name+".csv",write_mode,val_row)
 
     wind_table = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, '#detail-data-table > tbody > tr.td-windCombined.height-windCombined.d-display-waves')))
 
@@ -108,7 +112,7 @@ def main(driver,atribute):
         #print(wave_val[i].text)
     # ドライバーを終了
     driver.close()
-    #driver.quit()
+    driver.quit()
 
 def val_roup(wait, value, css_selector):
     """
@@ -148,7 +152,7 @@ def val_roup(wait, value, css_selector):
             #print(val[i].text)
             der_val = newline_spl(val[i].text)
             val_list.append(der_val)
-    
+        #val_list = list(itertools.chain.from_iterable(val_list))
     return val_list
 
 def newline_spl(value):
@@ -204,6 +208,23 @@ def wind_speed_dedi(val_row):
     print(max_wind_speed)
 
     return wind_speed, max_wind_speed
+
+def csv_write(save_name,write_mode,write_value):
+    """
+    csvfileを記述するための関数
+
+    parameters
+    ----------
+    save_name : str
+        保存するディレクトリとファイル名
+    write_mode : str
+        上書き"a",書き出し"w"
+    write_value : list
+        書き出す値
+    """
+    with open(save_name, write_mode, encoding='UTF-8', errors='ignore') as f:
+                writer = csv.writer(f, lineterminator='\n')            
+                writer.writerow(write_value)
 
 if __name__ == "__main__":
     atri = {"value":"https://www.windy.com/24.435/124.004/waves?waves,24.344,123.967,10"}

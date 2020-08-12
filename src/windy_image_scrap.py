@@ -162,10 +162,11 @@ def create_date_dir(dir_pass,atribute,date=True):
         if not os.path.exists(dir_pass+now_date+atribute): #../data/windy_img/日付/の階層にatiributeのディレクトリがないなら
             os.makedirs(dir_pass+now_date+atribute, exist_ok=True)
         print(dir_pass+now_date+atribute)
-    elif date == False:
+    else:
         dir_pass = dir_pass+atribute    #ディレクトリパス最後にatributeを追加
         dir_list = dir_pass.split("/")  #ディレクトリパスを"/"で分割
-        for i in range(1,len(dir_list)):#ディレクトリ階層の数だけループ,最初に../がある想定
+        for i in range(0,len(dir_list)):#ディレクトリ階層の数だけループ,最初に../がある想定
+            i += 1
             if not os.path.exists("/".join(dir_list[0:i])):             #ディレクトリ階層が存在するかチェック
                 os.makedirs("/".join(dir_list[0:i]), exist_ok=True)     #存在しないなら作成
 

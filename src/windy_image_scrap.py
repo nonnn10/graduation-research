@@ -112,6 +112,7 @@ def mouse_move(time_num,i,driver,error=False):
         elements = driver.find_elements_by_class_name("played")
         loc = elements[0].location
         x, y = loc['x'], loc['y']
+        x = 55                      #追加
         print("座標xの値"+str(x))
         x += time_num[i]
         print("座標xの値"+str(x))

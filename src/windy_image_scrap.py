@@ -35,7 +35,7 @@ def main(driver,atribute):
     month = re.sub(r'(\d*)-(\d*)-(\d*)', r'\2',now_date)
     yaer = re.sub(r'(\d*)-(\d*)-(\d*)', r'\1',now_date)
 
-    time.sleep(3)
+    time.sleep(20)
     # ウィンドウサイズを設定
     driver.set_window_size(1200, 850)
     #picker-close-buttonが表示されるまで待つ処理
@@ -56,18 +56,20 @@ def main(driver,atribute):
         for j in range(0,len(date_all[i])):
             try:
                 error=False
+                time.sleep(10)
                 mouse_move(date_all[i],j,driver,error)
             except Exception:
                 error = True
+                time.sleep(10)
                 mouse_move(date_all[i],j,driver,error)
-            time.sleep(3)
+            #time.sleep(3)
             
             #WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.CLASS_NAME, "leaflet-canvas")))
             #png = driver.find_element_by_class_name("leaflet-canvas").screenshot_as_png
             
             #img_nameの待機処理を追加(学科の方でエラーが出る)
             #img_name = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,"#progress-bar > div.timecode.main-timecode"))).text
-            time.sleep(60)
+            time.sleep(20)
             img_name = driver.find_element_by_css_selector("#progress-bar > div.timecode.main-timecode").text
             #print(img_name)
             
@@ -102,7 +104,7 @@ def mouse_move(time_num,i,driver,error=False):
     if error == False:
         print("No error")
         time.sleep(2)
-        driver.set_window_size(1200, 850)
+        #driver.set_window_size(1200, 850)
         time.sleep(2)
         elements = driver.find_elements_by_class_name("played")
         loc = elements[0].location
@@ -116,7 +118,7 @@ def mouse_move(time_num,i,driver,error=False):
     elif error == True:
         print("エラー")
         time.sleep(2)
-        driver.set_window_size(1200, 850)
+        #driver.set_window_size(1200, 850)
         time.sleep(2)
         elements = driver.find_elements_by_class_name("played")
         loc = elements[0].location

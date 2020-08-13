@@ -12,9 +12,9 @@ import exe
 import os
 from selenium.webdriver.common.action_chains import ActionChains    #wendyの時間帯のバーをクリックするの必要
 #wait処理に必要
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
 #日付取得
 import datetime as dt
 #日付の年,月,週の計算を可能にする
@@ -49,6 +49,8 @@ def main(driver,atribute):
     img_date = 0
     date_all = date_list()
     
+    #待機処理のための設定(10秒)
+    wait = WebDriverWait(driver, 10)
 
     for i in range(0,len(date_all)):
         for j in range(0,len(date_all[i])):
@@ -64,7 +66,8 @@ def main(driver,atribute):
             #png = driver.find_element_by_class_name("leaflet-canvas").screenshot_as_png
             
             #img_nameの
-            img_name = driver.find_element_by_css_selector("#progress-bar > div.timecode.main-timecode").text
+            img_name = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,"#progress-bar > div.timecode.main-timecode"))).text
+            #img_name = driver.find_element_by_css_selector("#progress-bar > div.timecode.main-timecode").text
             #print(img_name)
             
             #ここに関数

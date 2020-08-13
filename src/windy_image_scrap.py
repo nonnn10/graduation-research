@@ -114,6 +114,7 @@ def mouse_move(time_num,i,driver,error=False):
         x, y = loc['x'], loc['y']
         x = 55                      #追加
         print("座標xの値"+str(x))
+        print("座標xの値"+str(y))
         x += time_num[i]
         print("座標xの値"+str(x))
         actions = ActionChains(driver)

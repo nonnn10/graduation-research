@@ -37,7 +37,7 @@ def main(driver,atribute):
 
     time.sleep(20)
     # ウィンドウサイズを設定
-    driver.set_window_size(1800, 850)
+    driver.set_window_size(1200, 850)
     #ウィンドウサイズの確認
     size = driver.get_window_size()
     print("Window size: width = {}px, height = {}px.".format(size["width"], size["height"]))
@@ -108,10 +108,11 @@ def mouse_move(time_num,i,driver,error=False):
         print("No error")
         time.sleep(2)
         #driver.set_window_size(1200, 850)
-        time.sleep(2)
+        time.sleep(10)
         elements = driver.find_elements_by_class_name("played")
         loc = elements[0].location
         x, y = loc['x'], loc['y']
+        print("座標xの値"+str(x))
         x += time_num[i]
         print("座標xの値"+str(x))
         actions = ActionChains(driver)
@@ -122,10 +123,11 @@ def mouse_move(time_num,i,driver,error=False):
         print("エラー")
         time.sleep(2)
         #driver.set_window_size(1200, 850)
-        time.sleep(2)
+        time.sleep(10)
         elements = driver.find_elements_by_class_name("played")
         loc = elements[0].location
         x, y = loc['x'], loc['y']
+        print("座標xの値"+str(x))
         x += time_num[i]
         print("座標xの値"+str(x))
         actions = ActionChains(driver)

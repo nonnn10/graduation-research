@@ -38,6 +38,9 @@ def main(driver,atribute):
     time.sleep(20)
     # ウィンドウサイズを設定
     driver.set_window_size(1800, 850)
+    #ウィンドウサイズの確認
+    size = driver.get_window_size()
+    print("Window size: width = {}px, height = {}px.".format(size["width"], size["height"]))
     #picker-close-buttonが表示されるまで待つ処理
     #WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.CLASS_NAME, "picker-close-button")))
 

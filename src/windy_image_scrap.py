@@ -308,9 +308,15 @@ if __name__ == '__main__':
     
     atri = {"wind_speed":"https://www.windy.com/?24.343,123.967,10",
             "wave_height":"https://www.windy.com/ja/-%E6%B3%A2-waves?waves,24.343,123.967,10"}
+    
     for i, (key,value) in enumerate(atri.items()):
         driver = exe.start_up(headless_active=True, web_url=value)
-        main(driver,key)
+        try:
+            main(driver,key)
+        except Exception as e : 
+            print(e)
+            driver.close()
+            driver.quit()
     #https://www.windy.com/?24.343,123.967,10  風
     #https://www.windy.com/ja/-%E6%B3%A2-waves?waves,24.343,123.967,10  波
 

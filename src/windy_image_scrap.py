@@ -323,6 +323,7 @@ if __name__ == '__main__':
             main(driver,key)
         except Exception as e : 
             print(e)
+            driver.get_screenshot_as_file('../data/windy_img'+'/Error.png')
             driver.close()
             driver.quit()
     #https://www.windy.com/?24.343,123.967,10  風

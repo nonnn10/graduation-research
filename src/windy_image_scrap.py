@@ -112,9 +112,10 @@ def mouse_move(time_num,i,driver,error=False):
         elements = driver.find_elements_by_class_name("played")
         loc = elements[0].location
         x, y = loc['x'], loc['y']
-        x = 55                      #追加
+        x = 55
+        y = 820                      #追加
         print("座標xの値"+str(x))
-        print("座標xの値"+str(y))
+        print("座標yの値"+str(y))
         x += time_num[i]
         print("座標xの値"+str(x))
         actions = ActionChains(driver)

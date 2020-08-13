@@ -1,7 +1,8 @@
 """
+スクレイピングで属性の値を取得 : https://www.seleniumqref.com/api/python/element_infoget/Python_get_attribute.html
+スクレイピングでのtry処理 : https://tanuhack.com/stable-selenium/
 
 windy.comから数値をスクレイピングする
-
 """
 from selenium import webdriver
 import csv
@@ -67,7 +68,7 @@ def main(driver,atribute):
         val_row = val_roup(wait,key,value)
         print(val_row)
         #csvfileに記述
-        file_name = "windy_val_"+key     #fileの名前をwindy_val_date,windy_val_time_hourなどにする
+        file_name = atribute+"_val_"+key     #fileの名前をwindy_val_date,windy_val_time_hourなどにする
         write_mode = "a"
         print(dir_pass+key)
         #引数のatributeにval_dicのkey
@@ -77,19 +78,12 @@ def main(driver,atribute):
             wind_speed,max_wind_speed = wind_speed_dedi(val_row)
             wind_name = ["wind_speed","max_wind_speed"]             #fileの名前のための配列
             for i, wind_lists in enumerate([wind_speed,max_wind_speed]):
-                file_name = "windy_val_"+wind_name[i]
+                file_name = atribute+"_val_"+wind_name[i]
                 wis.create_date_dir(dir_pass,atribute=wind_name[i],date=False)    #ディレクトリ作成
-
-                # with open(dir_pass+"/"+wind_name[i]+"/"+file_name+".csv", write_mode, encoding='UTF-8', errors='ignore') as f:
-                #     writer = csv.writer(f, lineterminator='\n')            
-                #     writer.writerow(wind_lists)
                 csv_write(dir_pass+"/"+wind_name[i]+"/"+file_name+".csv",write_mode,wind_lists)
         else:
-            wis.create_date_dir(dir_pass,atribute=key,date=False)    #ディレクトリ作成
+            wis.create_date_dir(dir_pass,atribute=key,date=False)                  #ディレクトリ作成
             val_row = list(itertools.chain.from_iterable(val_row))
-            # with open(dir_pass+"/"+key+"/"+file_name+".csv", write_mode, encoding='UTF-8', errors='ignore') as f:
-            #     writer = csv.writer(f, lineterminator='\n')            
-            #     writer.writerow(val_row)
             csv_write(dir_pass+"/"+key+"/"+file_name+".csv",write_mode,val_row)
 
     wind_table = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, '#detail-data-table > tbody > tr.td-windCombined.height-windCombined.d-display-waves')))
@@ -169,7 +163,6 @@ def newline_spl(value):
     value : list
         改行と#を削除した配列
     """
-    #a="#\n24\n30"
     value = value.splitlines()
     try:
         value.remove("#")
@@ -227,8 +220,27 @@ def csv_write(save_name,write_mode,write_value):
                 writer.writerow(write_value)
 
 if __name__ == "__main__":
-    atri = {"value":"https://www.windy.com/24.435/124.004/waves?waves,24.344,123.967,10"}
-            #"wave_height":"https://www.windy.com/24.435/124.004/waves?waves,24.344,123.967,10"}
+    atri = {"value_top":"https://www.windy.com/24.435/124.004/waves?waves,24.344,123.967,10",
+            "value_bottom":"https://www.windy.com/24.282/124.041/waves?waves,24.162,124.040,10,i:pressure"}
+    
     for i, (key,value) in enumerate(atri.items()):
-        driver = exe.start_up(headless_active=True, web_url=value)
-        main(driver,key)
+        for _ in range(0,3):#最大3回tryする
+            try :
+                driver = exe.start_up(headless_active=True, web_url=value)
+                main(driver,key)
+            except Exception as e :     #全てのエラーで
+                time.sleep(20)
+                driver = exe.start_up(headless_active=True, web_url=value)
+                main(driver,key)
+                error_dir = "../data"
+                wis.create_date_dir(error_dir,"Error",date=False)
+                save_name = error_dir+"/Error"+"/windy_"+key+".csv"
+                write_value = [wis.now_date_cre(),"Error Location "+key,e]
+                csv_write(save_name,"a",write_value)
+            else:    #正常終了した時
+                break
+        else:
+            error_dir = "../data/Error"
+            save_name = error_dir+"/Error"+"/windy_"+key+".csv"
+            write_value = [wis.now_date_cre(),"Error Location "+key,"3回失敗"]
+            csv_write(save_name,"a",write_value)

@@ -49,8 +49,8 @@ def main(driver,atribute):
     img_date = 0
     date_all = date_list()
     
-    #待機処理のための設定(10秒)
-    wait = WebDriverWait(driver, 10)
+    #待機処理のための設定(30秒)
+    wait = WebDriverWait(driver, 30)
 
     for i in range(0,len(date_all)):
         for j in range(0,len(date_all[i])):

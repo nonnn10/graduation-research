@@ -65,9 +65,10 @@ def main(driver,atribute):
             #WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.CLASS_NAME, "leaflet-canvas")))
             #png = driver.find_element_by_class_name("leaflet-canvas").screenshot_as_png
             
-            #img_nameの
-            img_name = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,"#progress-bar > div.timecode.main-timecode"))).text
-            #img_name = driver.find_element_by_css_selector("#progress-bar > div.timecode.main-timecode").text
+            #img_nameの待機処理を追加(学科の方でエラーが出る)
+            #img_name = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,"#progress-bar > div.timecode.main-timecode"))).text
+            time.sleep(60)
+            img_name = driver.find_element_by_css_selector("#progress-bar > div.timecode.main-timecode").text
             #print(img_name)
             
             #ここに関数

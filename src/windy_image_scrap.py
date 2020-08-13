@@ -35,7 +35,7 @@ def main(driver,atribute):
     month = re.sub(r'(\d*)-(\d*)-(\d*)', r'\2',now_date)
     yaer = re.sub(r'(\d*)-(\d*)-(\d*)', r'\1',now_date)
 
-    time.sleep(20)
+    time.sleep(10)
     # ウィンドウサイズを設定
     driver.set_window_size(1200, 850)
     #ウィンドウサイズの確認
@@ -59,11 +59,11 @@ def main(driver,atribute):
         for j in range(0,len(date_all[i])):
             try:
                 error=False
-                time.sleep(10)
+                time.sleep(2)
                 mouse_move(date_all[i],j,driver,error)
             except Exception:
                 error = True
-                time.sleep(10)
+                time.sleep(2)
                 mouse_move(date_all[i],j,driver,error)
             #time.sleep(3)
             
@@ -72,7 +72,7 @@ def main(driver,atribute):
             
             #img_nameの待機処理を追加(学科の方でエラーが出る)
             #img_name = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,"#progress-bar > div.timecode.main-timecode"))).text
-            time.sleep(20)
+            #time.sleep(20)
             img_name = driver.find_element_by_css_selector("#progress-bar > div.timecode.main-timecode").text
             #print(img_name)
             
@@ -108,14 +108,14 @@ def mouse_move(time_num,i,driver,error=False):
         print("No error")
         time.sleep(2)
         #driver.set_window_size(1200, 850)
-        time.sleep(10)
+        time.sleep(2)
         elements = driver.find_elements_by_class_name("played")
         loc = elements[0].location
         x, y = loc['x'], loc['y']
-        x = 55
-        y = 820                      #追加
-        print("座標xの値"+str(x))
-        print("座標yの値"+str(y))
+        #x = 55
+        #y = 820                      #追加
+        #print("座標xの値"+str(x))
+        #print("座標yの値"+str(y))
         x += time_num[i]
         print("座標xの値"+str(x))
         actions = ActionChains(driver)
@@ -126,11 +126,11 @@ def mouse_move(time_num,i,driver,error=False):
         print("エラー")
         time.sleep(2)
         #driver.set_window_size(1200, 850)
-        time.sleep(10)
+        time.sleep(2)
         elements = driver.find_elements_by_class_name("played")
         loc = elements[0].location
         x, y = loc['x'], loc['y']
-        print("座標xの値"+str(x))
+        #print("座標xの値"+str(x))
         x += time_num[i]
         print("座標xの値"+str(x))
         actions = ActionChains(driver)

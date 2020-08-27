@@ -21,6 +21,8 @@ import datetime as dt
 from dateutil.relativedelta import relativedelta
 #正規表現置換
 import re
+#関数を使うため,create_date_dir()...
+import windy_image_scrap as wis
 
 
 
@@ -50,6 +52,7 @@ def main(driver,atribute):
     # driver.close()
     #img_dateの初期化
     img_date = 0
+    next_month = False
     date_all = date_list()
     
     #待機処理のための設定(30秒)
@@ -77,7 +80,7 @@ def main(driver,atribute):
             #print(img_name)
             
             #ここに関数
-            img_name_date = file_name_date(img_name,img_date,yaer,month)
+            img_name_date,img_date,next_month = file_name_date(img_name,img_date,next_month,yaer,month)
 
             # img_date = re.sub(r'(.*) (\d{1,2}) - (\d{1,2}:\d{2})', r'\2',img_name)
             # print(img_name)
@@ -184,7 +187,7 @@ def create_date_dir(dir_pass,atribute,date=True):
             if not os.path.exists("/".join(dir_list[0:i])):             #ディレクトリ階層が存在するかチェック
                 os.makedirs("/".join(dir_list[0:i]), exist_ok=True)     #存在しないなら作成
 
-def file_name_date(img_name,img_date,yaer,month):
+def file_name_date(img_name,img_date,next_month,yaer,month):
     """
     画像のファイル名を日付と時間帯にする関数
 
@@ -194,6 +197,9 @@ def file_name_date(img_name,img_date,yaer,month):
         画像の取得日付と時間の文字列
     img_date : int
         画像の日付
+    next_month : bool
+        月が変更した時の処理
+        8月 -> 9月
     yaer : str
         画像を取得した日の年
     month : str
@@ -208,20 +214,22 @@ def file_name_date(img_name,img_date,yaer,month):
     img_name = re.sub(r'(.*)(\d{1,2}:\d{2})\n(.*)', r'\1\2',img_name)       #正規表現で変換(水曜日 29 - 17:00)
     img_date_now = int(re.sub(r'(.*) (\d{1,2}) - (\d{1,2}:\d{2})', r'\2',img_name))      #正規表現で変換,日付の部分のみ(29)
     img_date_time= re.sub(r'(.*) (\d{1,2}) - (\d{1,2}:\d{2})', r'\3',img_name)      #正規表現で変換,日付の部分のみ(29)
+    
 
+    if img_date > img_date_now or next_month == True:      #31 > 1 または　matah next_monthがTrueの場合
+        img_date = img_date_now         #1日前の日付を今の日付に上書き
+        next_month = True               #次の月に値を更新するためのフラグをTrueに
+        img_name_date = yaer+"-"+month+"-"+str(img_date)+" "+img_date_time     #年-月-日 時間
+        img_name_date = dt.datetime.strptime(img_name_date,"%Y-%m-%d %H:%M")      #datetime型に変換
+        img_name_date = img_name_date + relativedelta(months=1)         #次の月にするための計算
+        
 
-    if img_date <= img_date_now:        #30 <= 31
+    elif img_date <= img_date_now:        #30 <= 31
         img_date = img_date_now         #1日前の日付を今の日付に上書き
         img_name_date = yaer+"-"+month+"-"+str(img_date)+" "+img_date_time    #年-月-日 時間
         img_name_date = dt.datetime.strptime(img_name_date,"%Y-%m-%d %H:%M")      #datetime型に変換
 
-    elif img_date >= img_date_now:      #31 >= 1
-        img_date = img_date_now         #1日前の日付を今の日付に上書き
-        img_name_date = yaer+"-"+month+"-"+str(img_date)+" "+img_date_time     #年-月-日 時間
-        img_name_date = dt.datetime.strptime(img_name_date,"%Y-%m-%d %H:%M")      #datetime型に変換
-        img_name_date = img_name_date + relativedelta(months=1)         #次の月にするための計算
-
-    return img_name_date
+    return img_name_date,img_date,next_month
 
 def date_list():
     """

@@ -10,9 +10,12 @@ import file_date
 import os
 import windy_image_scrap as wis
 
-dir_pass = "../data/windy_value"
+dir_pass = "../data/windy_img/test.txt"
 key = "date"
-wis.create_date_dir(dir_pass,atribute=key,date=False)
+#wis.create_date_dir(dir_pass,atribute=key,date=False)
+now_date = "\n"+str(dt.datetime.now())
 
-
+print(now_date)
+with open(dir_pass,mode = "a") as f:
+    f.write(now_date)
 #print()

@@ -182,10 +182,13 @@ def create_date_dir(dir_pass,atribute,date=True):
     else:
         dir_pass = dir_pass+atribute    #ディレクトリパス最後にatributeを追加
         dir_list = dir_pass.split("/")  #ディレクトリパスを"/"で分割
+        dir_list.remove("")             #dir_listの中に""がある場合は削除
         for i in range(0,len(dir_list)):#ディレクトリ階層の数だけループ,最初に../がある想定
             i += 1
-            if not os.path.exists("/".join(dir_list[0:i])):             #ディレクトリ階層が存在するかチェック
-                os.makedirs("/".join(dir_list[0:i]), exist_ok=True)     #存在しないなら作成
+            #print("/".join(dir_list[0:i]))
+            if not os.path.exists("/"+"/".join(dir_list[0:i])):             #ディレクトリ階層が存在するかチェック
+                #print("not exist")
+                os.makedirs("/"+"/".join(dir_list[0:i]), exist_ok=True)     #存在しないなら作成
 
 def file_name_date(img_name,img_date,next_month,yaer,month):
     """

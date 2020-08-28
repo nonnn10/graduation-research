@@ -4,7 +4,7 @@ webのリロード : https://www.seleniumqref.com/api/python/window_set/Python_r
 
 コマンドラインから時間の引数を受け取り,波と風の時間のスクリーンショットをとる
 ディレクトリは「../data/windy_img/now_scrape」の中のwave_height,wind_speedのそれぞれの時間9:00,11:00...17:00それぞれのディレクトリに
-2020-08-31 17:00:00.png　というファイル名で保存
+2020-08-31 17:00:00.png　というファイル名などで保存
 """
 from selenium import webdriver
 import csv
@@ -33,10 +33,9 @@ def main(driver,atribute,args):
     scrap_time = args[1]
 
     #画像保存先のディレクトリパス
-    dir_pass = "../data/now_img_scrape"+"/"+atribute
-
+    #dir_pass = "../data/now_img_scrape"+"/"+atribute #"/Users/e175755/graduation-research/data/now_img_scrape"+"/"+atribute
+    dir_pass = "/Users/e175755/graduation-research/data/now_img_scrape"+"/"+atribute
     wis.create_date_dir(dir_pass,scrap_time,date=False)    #ディレクトリ作成
-
     now_date = wis.now_date_cre()
 
     #画像ファイル名の作成に必要
@@ -64,7 +63,7 @@ def main(driver,atribute,args):
     #print("座標xの値"+str(x))
     #print("座標yの値"+str(y))
     #x += time_num[i]
-    print("座標xの値"+str(x))
+    #print("座標xの値"+str(x))
     actions = ActionChains(driver)
     actions.move_by_offset(x, y)
     actions.click()
@@ -98,6 +97,6 @@ if __name__ == '__main__':
             main(driver,key,args)
         except Exception as e : 
             print(e)
-            driver.get_screenshot_as_file('../data/windy_img'+'/Error.png')
+            driver.get_screenshot_as_file('/Users/e175755/graduation-research/data/windy_img'+'/Error.png')
             driver.close()
             driver.quit()

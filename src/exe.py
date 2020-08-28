@@ -50,8 +50,8 @@ def start_up (headless_active,web_url):
     options = Options()
     if headless_active == True:
         options.add_argument('--headless')          #ヘッドレスモードのオプション
-    #絶対パスでドライバーの場所を指定
-    driver = webdriver.Chrome('../ChromeDriver/chromedriver',options=options)
+    #絶対パスでドライバーの場所を指定   #'../ChromeDriver/chromedriver'
+    driver = webdriver.Chrome("/Users/e175755/graduation-research/ChromeDriver/chromedriver",options=options)
     driver.get(web_url)
     #driver.get('http://www.aneikankou.co.jp/timetables?date=2016-04-01')
     # time.sleep(3)

@@ -27,7 +27,7 @@ import itertools
 
 def main(driver,atribute):
     #画像保存先のディレクトリパス
-    dir_pass = "../data/windy_value"
+    dir_pass = "/Users/e175755/graduation-research/data/windy_value"
     #atribute = "wind_speed"
     print(atribute)
     now_date = wis.now_date_cre()       #プログラム実行時の日付
@@ -232,7 +232,7 @@ if __name__ == "__main__":
                 time.sleep(20)
                 driver = exe.start_up(headless_active=True, web_url=value)
                 main(driver,key)
-                error_dir = "../data"
+                error_dir = "/Users/e175755/graduation-research/data"
                 wis.create_date_dir(error_dir,"Error",date=False)
                 save_name = error_dir+"/Error"+"/windy_"+key+".csv"
                 write_value = [wis.now_date_cre(),"Error Location "+key,e]
@@ -240,7 +240,7 @@ if __name__ == "__main__":
             else:    #正常終了した時
                 break
         else:
-            error_dir = "../data/Error"
-            save_name = error_dir+"/Error"+"/windy_"+key+".csv"
+            error_dir = "/Users/e175755/graduation-research/data/Error"
+            save_name = error_dir+"/Errorlog"+"/windy_"+key+".csv"
             write_value = [wis.now_date_cre(),"Error Location "+key,"3回失敗"]
             csv_write(save_name,"a",write_value)

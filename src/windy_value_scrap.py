@@ -25,9 +25,9 @@ import re
 #2次元配列を1次元にするために
 import itertools
 
-def main(driver,atribute):
+def main(driver,atribute,abspath):
     #画像保存先のディレクトリパス
-    dir_pass = "/Users/e175755/graduation-research/data/windy_value"
+    dir_pass = abspath+"/graduation-research/data/windy_value"
     #atribute = "wind_speed"
     print(atribute)
     now_date = wis.now_date_cre()       #プログラム実行時の日付
@@ -86,19 +86,7 @@ def main(driver,atribute):
             val_row = list(itertools.chain.from_iterable(val_row))
             csv_write(dir_pass+"/"+key+"/"+file_name+".csv",write_mode,val_row)
 
-    wind_table = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, '#detail-data-table > tbody > tr.td-windCombined.height-windCombined.d-display-waves')))
 
-    wave_table = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, '#detail-data-table > tbody > tr.td-waves.height-waves.d-display-waves')))
-    #wait = WebDriverWait(wind_table, 20)
-    #wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, 'td')))
-    #aa = wait.until(EC.visibility_of_all_elements_located((By.CLASS_NAME, "td-windCombined")))
-    wind_val = wind_table.find_elements_by_tag_name('td')
-
-    wave_val = wave_table.find_elements_by_tag_name('td')
-    print("tdの数"+str(len(wave_val)))
-    #wait = WebDriverWait(driver, 10)
-    
-    print(wave_val[0].text)
     #print(aa[1].find_element_by_tag_name("div").text)
     #for i in range(0,len(wave_val)):
         #wind_col = wind_table[i].find_element_by_tag_name('td')
@@ -220,19 +208,21 @@ def csv_write(save_name,write_mode,write_value):
                 writer.writerow(write_value)
 
 if __name__ == "__main__":
+    abspath = wis.abspath_top()   #絶対path (/Users/name)
+    print(abspath)
     atri = {"value_top":"https://www.windy.com/24.435/124.004/waves?waves,24.344,123.967,10",
             "value_bottom":"https://www.windy.com/24.282/124.041/waves?waves,24.162,124.040,10,i:pressure"}
     
     for i, (key,value) in enumerate(atri.items()):
         for _ in range(0,3):#最大3回tryする
             try :
-                driver = exe.start_up(headless_active=True, web_url=value)
-                main(driver,key)
+                driver = exe.start_up(headless_active=True, web_url=value,abspath=abspath)
+                main(driver,key,abspath)
             except Exception as e :     #全てのエラーで
                 time.sleep(20)
-                driver = exe.start_up(headless_active=True, web_url=value)
-                main(driver,key)
-                error_dir = "/Users/e175755/graduation-research/data"
+                driver = exe.start_up(headless_active=True, web_url=value,abspath=abspath)
+                main(driver,key,abspath)
+                error_dir = abspath+"/graduation-research/data"
                 wis.create_date_dir(error_dir,"Error",date=False)
                 save_name = error_dir+"/Error"+"/windy_"+key+".csv"
                 write_value = [wis.now_date_cre(),"Error Location "+key,e]
@@ -240,7 +230,7 @@ if __name__ == "__main__":
             else:    #正常終了した時
                 break
         else:
-            error_dir = "/Users/e175755/graduation-research/data/Error"
+            error_dir = abspath+"/graduation-research/data/Error"
             save_name = error_dir+"/Errorlog"+"/windy_"+key+".csv"
             write_value = [wis.now_date_cre(),"Error Location "+key,"3回失敗"]
             csv_write(save_name,"a",write_value)

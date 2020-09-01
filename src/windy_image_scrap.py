@@ -26,9 +26,9 @@ import windy_image_scrap as wis
 
 
 
-def main(driver,atribute):
+def main(driver,atribute,abspath):
     #画像保存先のディレクトリパス
-    dir_pass = "../data/windy_img/"
+    dir_pass = abspath+"/graduation-research/data/windy_img/"
     #atribute = "wind_speed"
     print(atribute)
     now_date = now_date_cre()
@@ -234,6 +234,30 @@ def file_name_date(img_name,img_date,next_month,yaer,month):
 
     return img_name_date,img_date,next_month
 
+def abspath_top():
+    """
+    絶対パスを取得しその中のgraduation-researchより上の階層のpathを出力
+
+    parameters
+    ----------
+
+    return
+    ------
+    top_path : str
+        graduation-researchより上のpath
+    """
+    apath=os.getcwd()       #スクリプトを実行した場所の絶対path
+    dl = apath.split("/")   #ディレクトリパスを"/"で分割
+    dl.remove("")           #dlの中に""がある場合は削除
+    try:
+        x = dl.index('graduation-research') #'graduation-research'のindex番号
+    except ValueError:
+        x = dl.index('Users')               #'Users'のindex番号
+        x =+ 2
+    top_path = "/"+"/".join(dl[0:x])
+    
+    return top_path
+
 def date_list():
     """
     日付、時間のx軸の値
@@ -324,17 +348,17 @@ def date_list():
 
 
 if __name__ == '__main__':
-    
+    abspath = abspath_top()  #絶対path (/Users/name)
     atri = {"wind_speed":"https://www.windy.com/?24.343,123.967,10",
             "wave_height":"https://www.windy.com/ja/-%E6%B3%A2-waves?waves,24.343,123.967,10"}
     
     for i, (key,value) in enumerate(atri.items()):
-        driver = exe.start_up(headless_active=True, web_url=value)
+        driver = exe.start_up(headless_active=True, web_url=value,abspath=abspath)
         try:
-            main(driver,key)
+            main(driver,key,abspath)
         except Exception as e : 
             print(e)
-            driver.get_screenshot_as_file('../data/windy_img'+'/Error.png')
+            driver.get_screenshot_as_file(abspath+'/graduation-research/data/windy_img'+'/Error.png')
             driver.close()
             driver.quit()
     #https://www.windy.com/?24.343,123.967,10  風

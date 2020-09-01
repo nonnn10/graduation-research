@@ -28,13 +28,13 @@ import windy_image_scrap as wis
 #コマンドライン引数
 import sys
 
-def main(driver,atribute,args):
+def main(driver,atribute,args,abspath):
     #コマンドラインから取得した引数をscrap_timeに代入
     scrap_time = args[1]
 
     #画像保存先のディレクトリパス
     #dir_pass = "../data/now_img_scrape"+"/"+atribute #"/Users/e175755/graduation-research/data/now_img_scrape"+"/"+atribute
-    dir_pass = "/Users/e175755/graduation-research/data/now_img_scrape"+"/"+atribute
+    dir_pass = abspath+"/graduation-research/data/now_img_scrape"+"/"+atribute
     wis.create_date_dir(dir_pass,scrap_time,date=False)    #ディレクトリ作成
     now_date = wis.now_date_cre()
 
@@ -58,12 +58,7 @@ def main(driver,atribute,args):
     elements = driver.find_elements_by_id("search-weather-bg")
     loc = elements[0].location
     x, y = loc['x'], loc['y']
-    #x = 55
-    #y = 820                      #追加
-    #print("座標xの値"+str(x))
-    #print("座標yの値"+str(y))
-    #x += time_num[i]
-    #print("座標xの値"+str(x))
+    #カーソル移動
     actions = ActionChains(driver)
     actions.move_by_offset(x, y)
     actions.click()
@@ -87,16 +82,16 @@ def main(driver,atribute,args):
 
 
 if __name__ == '__main__':
-    
+    abspath = wis.abspath_top()   #絶対path (/Users/name)
     atri = {"wind_speed":"https://www.windy.com/?24.343,123.967,10",
             "wave_height":"https://www.windy.com/ja/-%E6%B3%A2-waves?waves,24.343,123.967,10"}
     args = sys.argv
     for i, (key,value) in enumerate(atri.items()):
-        driver = exe.start_up(headless_active=True, web_url=value)
+        driver = exe.start_up(headless_active=True, web_url=value,abspath=abspath)
         try:
-            main(driver,key,args)
+            main(driver,key,args,abspath)
         except Exception as e : 
             print(e)
-            driver.get_screenshot_as_file('/Users/e175755/graduation-research/data/windy_img'+'/Error.png')
+            driver.get_screenshot_as_file(abspath+'/graduation-research/data/windy_img'+'/Error.png')
             driver.close()
             driver.quit()

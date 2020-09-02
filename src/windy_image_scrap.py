@@ -108,7 +108,7 @@ def mouse_move(time_num,i,driver,error=False):
         try構文での判定により動きを変更する
     """
     if error == False:
-        print("No error")
+        #print("No error")
         time.sleep(2)
         #driver.set_window_size(1200, 850)
         time.sleep(2)
@@ -120,13 +120,13 @@ def mouse_move(time_num,i,driver,error=False):
         #print("座標xの値"+str(x))
         #print("座標yの値"+str(y))
         x += time_num[i]
-        print("座標xの値"+str(x))
+        #print("座標xの値"+str(x))
         actions = ActionChains(driver)
         actions.move_by_offset(x, y)
         actions.click()
         actions.perform()
     elif error == True:
-        print("エラー")
+        #print("エラー")
         time.sleep(2)
         #driver.set_window_size(1200, 850)
         time.sleep(2)
@@ -135,7 +135,7 @@ def mouse_move(time_num,i,driver,error=False):
         x, y = loc['x'], loc['y']
         #print("座標xの値"+str(x))
         x += time_num[i]
-        print("座標xの値"+str(x))
+        #print("座標xの値"+str(x))
         actions = ActionChains(driver)
         actions.reset_actions()
         actions.move_by_offset(x, y)

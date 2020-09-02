@@ -118,7 +118,7 @@ def val_roup(wait, value, css_selector):
     if value == "date":
         val = val_table.find_elements_by_tag_name('td')
         
-        print("tdの数"+str(len(val)))
+        print("td of num"+str(len(val)))
         for i in range(0,len(val)):
             #wind_col = wind_table[i].find_element_by_tag_name('td')
             #print("せいこう"+" 　"+str(i))
@@ -127,7 +127,7 @@ def val_roup(wait, value, css_selector):
             val_list.append(der_val)
     else:
         val = val_table.find_elements_by_tag_name('td')
-        print("tdの数"+str(len(val)))
+        print("td of num"+str(len(val)))
         for i in range(0,len(val)):
             #wind_col = wind_table[i].find_element_by_tag_name('td')
             #print("せいこう"+" 　"+str(i))
@@ -182,10 +182,10 @@ def wind_speed_dedi(val_row):
         wind_speed.append(val_row[i][0])
         max_wind_speed.append(val_row[i][1])
     print("wind_speed")
-    print("tdの数"+str(len(wind_speed)))
+    print("td of num"+str(len(wind_speed)))
     print(wind_speed)
     print("max_wind_speed")
-    print("tdの数"+str(len(max_wind_speed)))
+    print("td of num"+str(len(max_wind_speed)))
     print(max_wind_speed)
 
     return wind_speed, max_wind_speed
@@ -232,5 +232,5 @@ if __name__ == "__main__":
         else:
             error_dir = abspath+"/graduation-research/data/Error"
             save_name = error_dir+"/Errorlog"+"/windy_"+key+".csv"
-            write_value = [wis.now_date_cre(),"Error Location "+key,"3回失敗"]
+            write_value = [wis.now_date_cre(),"Error Location "+key,"failed 3 times "]
             csv_write(save_name,"a",write_value)

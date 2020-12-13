@@ -32,7 +32,7 @@ def main(driver):
     # driver.close()   #この行と下の1行はheadlessモード出ない時には必要
     # driver.quit()
 
-def start_up (headless_active,web_url):
+def start_up (headless_active,web_url,abspath):
     """
     Chromeのドライバーを指定する
     ヘッドレスモードにするか指定する
@@ -41,6 +41,11 @@ def start_up (headless_active,web_url):
     ----------
     options_active : bool
         ヘッドレスにする場合True
+    web_url : str
+        スクレイピングを行うサイトのurl
+    abspath : str
+        絶対パス(/Users/name)
+
     Returns
     -------
     draiver : WebDriver
@@ -50,8 +55,9 @@ def start_up (headless_active,web_url):
     options = Options()
     if headless_active == True:
         options.add_argument('--headless')          #ヘッドレスモードのオプション
-    #絶対パスでドライバーの場所を指定
-    driver = webdriver.Chrome('../ChromeDriver/chromedriver',options=options)
+    #絶対パスでドライバーの場所を指定   #'../ChromeDriver/chromedriver'
+    print(abspath+"/graduation-research/ChromeDriver/chromedriver")
+    driver = webdriver.Chrome(abspath+"/graduation-research/ChromeDriver/chromedriver",options=options)
     driver.get(web_url)
     #driver.get('http://www.aneikankou.co.jp/timetables?date=2016-04-01')
     # time.sleep(3)
@@ -188,7 +194,7 @@ def datewrite (route_start,result_data,route_name,csv_file_name,file_name,writte
         書き込みモードを選択 a,追記　w,新しく上書き
     """
     #----------------------#
-    file_name = "2017"          #2017年で一纏めにしてみたい
+    #file_name = "2020"          #2017年で一纏めにしてみたい
     writte_mode = "w"           #追記
     #----------------------#
     start_cul = 0
@@ -373,7 +379,7 @@ def name_data_append(driver):
 #     return name,data
 
 if __name__ == '__main__':
-    driver = start_up(headless_active=True, web_url='http://www.aneikankou.co.jp/timetables')
+    driver = start_up(headless_active=True, web_url='http://www.aneikankou.co.jp/timetables',abspath='/Users/nosuke/')
     main(driver)
 
 

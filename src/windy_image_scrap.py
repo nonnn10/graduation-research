@@ -1,5 +1,5 @@
 """
-スクリーンショット : #https://m4usta13ng.hatenablog.com/entry/20181118_py_selenium_screenshot
+スクリーンショット : #https://m4usta13ng.hatnablog.com/entry/20181118_py_selenium_screenshot
 for文によるerror,ActionChains解決 : https://kurozumi.github.io/selenium-python/api.html#selenium.webdriver.common.action_chains.ActionChains.reset_actions
 
 windy.comから画像をスクレイピングする
@@ -12,31 +12,37 @@ import exe
 import os
 from selenium.webdriver.common.action_chains import ActionChains    #wendyの時間帯のバーをクリックするの必要
 #wait処理に必要
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
 #日付取得
 import datetime as dt
 #日付の年,月,週の計算を可能にする
 from dateutil.relativedelta import relativedelta
 #正規表現置換
 import re
+#関数を使うため,create_date_dir()...
+import windy_image_scrap as wis
 
 
 
-def main(driver,atribute):
+def main(driver,atribute,abspath):
     #画像保存先のディレクトリパス
-    dir_pass = "../data/windy_img/"
+    dir_pass = abspath+"/graduation-research/data/windy_img/"
     #atribute = "wind_speed"
     print(atribute)
-    now_date = create_date_dir(dir_pass,atribute)    #ディレクトリ作成
+    now_date = now_date_cre()
+    create_date_dir(dir_pass,atribute)    #ディレクトリ作成
     #画像ファイル名の作成に必要
     month = re.sub(r'(\d*)-(\d*)-(\d*)', r'\2',now_date)
     yaer = re.sub(r'(\d*)-(\d*)-(\d*)', r'\1',now_date)
 
-    time.sleep(3)
+    time.sleep(10)
     # ウィンドウサイズを設定
     driver.set_window_size(1200, 850)
+    #ウィンドウサイズの確認
+    size = driver.get_window_size()
+    print("Window size: width = {}px, height = {}px.".format(size["width"], size["height"]))
     #picker-close-buttonが表示されるまで待つ処理
     #WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.CLASS_NAME, "picker-close-button")))
 
@@ -46,34 +52,41 @@ def main(driver,atribute):
     # driver.close()
     #img_dateの初期化
     img_date = 0
+    next_month = False
     date_all = date_list()
     
+    #待機処理のための設定(30秒)
+    wait = WebDriverWait(driver, 30)
 
     for i in range(0,len(date_all)):
         for j in range(0,len(date_all[i])):
             try:
                 error=False
+                time.sleep(2)
                 mouse_move(date_all[i],j,driver,error)
             except Exception:
                 error = True
+                time.sleep(2)
                 mouse_move(date_all[i],j,driver,error)
-            time.sleep(3)
+            #time.sleep(3)
             
             #WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.CLASS_NAME, "leaflet-canvas")))
             #png = driver.find_element_by_class_name("leaflet-canvas").screenshot_as_png
             
-            #img_nameの
+            #img_nameの待機処理を追加(学科の方でエラーが出る)
+            #img_name = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,"#progress-bar > div.timecode.main-timecode"))).text
+            #time.sleep(20)
             img_name = driver.find_element_by_css_selector("#progress-bar > div.timecode.main-timecode").text
             #print(img_name)
             
             #ここに関数
-            img_name_date = file_name_date(img_name,img_date,yaer,month)
+            img_name_date,img_date,next_month = file_name_date(img_name,img_date,next_month,yaer,month)
 
             # img_date = re.sub(r'(.*) (\d{1,2}) - (\d{1,2}:\d{2})', r'\2',img_name)
             # print(img_name)
             print(img_name_date)
             sfile = driver.get_screenshot_as_file(dir_pass+now_date+'/'+atribute+'/'+str(img_name_date)+'.png')
-            print(sfile)
+            print("img save "+str(sfile))
             #with open('../data/windy_img/'+img_name+'.png', 'wb') as f:
             #    f.write(png)
 
@@ -95,36 +108,53 @@ def mouse_move(time_num,i,driver,error=False):
         try構文での判定により動きを変更する
     """
     if error == False:
-        print("No error")
+        #print("No error")
         time.sleep(2)
-        driver.set_window_size(1200, 850)
+        #driver.set_window_size(1200, 850)
         time.sleep(2)
         elements = driver.find_elements_by_class_name("played")
         loc = elements[0].location
         x, y = loc['x'], loc['y']
+        #x = 55
+        #y = 820                      #追加
+        #print("座標xの値"+str(x))
+        #print("座標yの値"+str(y))
         x += time_num[i]
-        print("座標xの値"+str(x))
+        #print("座標xの値"+str(x))
         actions = ActionChains(driver)
         actions.move_by_offset(x, y)
         actions.click()
         actions.perform()
     elif error == True:
-        print("エラー")
+        #print("エラー")
         time.sleep(2)
-        driver.set_window_size(1200, 850)
+        #driver.set_window_size(1200, 850)
         time.sleep(2)
         elements = driver.find_elements_by_class_name("played")
         loc = elements[0].location
         x, y = loc['x'], loc['y']
+        #print("座標xの値"+str(x))
         x += time_num[i]
-        print("座標xの値"+str(x))
+        #print("座標xの値"+str(x))
         actions = ActionChains(driver)
         actions.reset_actions()
         actions.move_by_offset(x, y)
         actions.click()
         actions.perform()
 
-def create_date_dir(dir_pass,atribute):
+def now_date_cre():
+    """
+    プログラム実行時の日付を返す関数
+
+    return
+    ------
+    now_date : datetime
+        プログラム実行時の日付を取得
+    """
+    now_date = dt.datetime.now().strftime('%Y-%m-%d')   #日付の取得(2020-07-26)
+    return now_date
+
+def create_date_dir(dir_pass,atribute,date=True):
     """
     画像を取得した日付のディレクトリを作成
     日付ディレクトリの下に風速、波高ディレクトリ
@@ -136,23 +166,31 @@ def create_date_dir(dir_pass,atribute):
         固定のディレクトリ、日付ディレクトリの上層
     atribute : str
         風、波のいずれか
-
-    return
-    ------
-    now_date : str
-        今日の日付
+    date : bool
+        日付をディレクトリに含めない時
     """
-    now_date = dt.datetime.now().strftime('%Y-%m-%d')   #日付の取得(2020-07-26)
+
+    atribute = "/"+atribute
     #ディレクトリ作成
-    if not os.path.exists(dir_pass+now_date): #../data/windy_img/の階層に日付のディレクトリがないなら
-        os.makedirs(dir_pass+now_date, exist_ok=True)
-    if not os.path.exists(dir_pass+now_date+"/"+atribute): #../data/windy_img/日付/の階層にatiributeのディレクトリがないなら
-        os.makedirs(dir_pass+now_date+"/"+atribute, exist_ok=True)
-    print(dir_pass+now_date+"/"+atribute)
+    if date == True:
+        now_date = dt.datetime.now().strftime('%Y-%m-%d')   #日付の取得(2020-07-26)   
+        if not os.path.exists(dir_pass+now_date): #../data/windy_img/の階層に日付のディレクトリがないなら
+            os.makedirs(dir_pass+now_date, exist_ok=True)
+        if not os.path.exists(dir_pass+now_date+atribute): #../data/windy_img/日付/の階層にatiributeのディレクトリがないなら
+            os.makedirs(dir_pass+now_date+atribute, exist_ok=True)
+        print(dir_pass+now_date+atribute)
+    else:
+        dir_pass = dir_pass+atribute    #ディレクトリパス最後にatributeを追加
+        dir_list = dir_pass.split("/")  #ディレクトリパスを"/"で分割
+        dir_list.remove("")             #dir_listの中に""がある場合は削除
+        for i in range(0,len(dir_list)):#ディレクトリ階層の数だけループ,最初に../がある想定
+            i += 1
+            #print("/".join(dir_list[0:i]))
+            if not os.path.exists("/"+"/".join(dir_list[0:i])):             #ディレクトリ階層が存在するかチェック
+                #print("not exist")
+                os.makedirs("/"+"/".join(dir_list[0:i]), exist_ok=True)     #存在しないなら作成
 
-    return now_date
-
-def file_name_date(img_name,img_date,yaer,month):
+def file_name_date(img_name,img_date,next_month,yaer,month):
     """
     画像のファイル名を日付と時間帯にする関数
 
@@ -162,6 +200,9 @@ def file_name_date(img_name,img_date,yaer,month):
         画像の取得日付と時間の文字列
     img_date : int
         画像の日付
+    next_month : bool
+        月が変更した時の処理
+        8月 -> 9月
     yaer : str
         画像を取得した日の年
     month : str
@@ -176,20 +217,46 @@ def file_name_date(img_name,img_date,yaer,month):
     img_name = re.sub(r'(.*)(\d{1,2}:\d{2})\n(.*)', r'\1\2',img_name)       #正規表現で変換(水曜日 29 - 17:00)
     img_date_now = int(re.sub(r'(.*) (\d{1,2}) - (\d{1,2}:\d{2})', r'\2',img_name))      #正規表現で変換,日付の部分のみ(29)
     img_date_time= re.sub(r'(.*) (\d{1,2}) - (\d{1,2}:\d{2})', r'\3',img_name)      #正規表現で変換,日付の部分のみ(29)
+    
 
+    if img_date > img_date_now or next_month == True:      #31 > 1 または　matah next_monthがTrueの場合
+        img_date = img_date_now         #1日前の日付を今の日付に上書き
+        next_month = True               #次の月に値を更新するためのフラグをTrueに
+        img_name_date = yaer+"-"+month+"-"+str(img_date)+" "+img_date_time     #年-月-日 時間
+        img_name_date = dt.datetime.strptime(img_name_date,"%Y-%m-%d %H:%M")      #datetime型に変換
+        img_name_date = img_name_date + relativedelta(months=1)         #次の月にするための計算
+        
 
-    if img_date <= img_date_now:        #30 <= 31
+    elif img_date <= img_date_now:        #30 <= 31
         img_date = img_date_now         #1日前の日付を今の日付に上書き
         img_name_date = yaer+"-"+month+"-"+str(img_date)+" "+img_date_time    #年-月-日 時間
         img_name_date = dt.datetime.strptime(img_name_date,"%Y-%m-%d %H:%M")      #datetime型に変換
 
-    elif img_date >= img_date_now:      #31 >= 1
-        img_date = img_date_now         #1日前の日付を今の日付に上書き
-        img_name_date = yaer+"-"+month+"-"+str(img_date)+" "+img_date_time     #年-月-日 時間
-        img_name_date = dt.datetime.strptime(img_name_date,"%Y-%m-%d %H:%M")      #datetime型に変換
-        img_name_date = img_name_date + relativedelta(months=1)         #次の月にするための計算
+    return img_name_date,img_date,next_month
 
-    return img_name_date
+def abspath_top():
+    """
+    絶対パスを取得しその中のgraduation-researchより上の階層のpathを出力
+
+    parameters
+    ----------
+
+    return
+    ------
+    top_path : str
+        graduation-researchより上のpath
+    """
+    apath=os.getcwd()       #スクリプトを実行した場所の絶対path
+    dl = apath.split("/")   #ディレクトリパスを"/"で分割
+    dl.remove("")           #dlの中に""がある場合は削除
+    try:
+        x = dl.index('graduation-research') #'graduation-research'のindex番号
+    except ValueError:
+        x = dl.index('Users')               #'Users'のindex番号
+        x =+ 2
+    top_path = "/"+"/".join(dl[0:x])
+    
+    return top_path
 
 def date_list():
     """
@@ -281,12 +348,19 @@ def date_list():
 
 
 if __name__ == '__main__':
-    
+    abspath = abspath_top()  #絶対path (/Users/name)
     atri = {"wind_speed":"https://www.windy.com/?24.343,123.967,10",
             "wave_height":"https://www.windy.com/ja/-%E6%B3%A2-waves?waves,24.343,123.967,10"}
+    
     for i, (key,value) in enumerate(atri.items()):
-        driver = exe.start_up(headless_active=True, web_url=value)
-        main(driver,key)
+        driver = exe.start_up(headless_active=True, web_url=value,abspath=abspath)
+        try:
+            main(driver,key,abspath)
+        except Exception as e : 
+            print(e)
+            driver.get_screenshot_as_file(abspath+'/graduation-research/data/windy_img'+'/Error.png')
+            driver.close()
+            driver.quit()
     #https://www.windy.com/?24.343,123.967,10  風
     #https://www.windy.com/ja/-%E6%B3%A2-waves?waves,24.343,123.967,10  波
 

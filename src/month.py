@@ -1,3 +1,8 @@
+"""
+python3 month.py　で実行
+安栄観光の欠航データを複数の日付単位でcsvとして取得する
+main関数の中のweb_urlの日付部分を変更することでその日付から取得することができる
+"""
 from selenium import webdriver
 import csv
 import time
@@ -5,7 +10,7 @@ from selenium.webdriver.chrome.options import Options
 import exe      #ファイルのコードをname==mainにしていないとimport時に実行されてしまう
 
 def main():
-    driver = exe.start_up(headless_active=True,web_url='http://www.aneikankou.co.jp/timetables?date=2017-01-01')
+    driver = exe.start_up(headless_active=True,web_url='http://www.aneikankou.co.jp/timetables?date=2020-08-02',abspath='/Users/nosuke')
     for i in range(365):          #rangeで取得する日付データ数を指定
         # csv_file_name = exe.date_result(driver)
 

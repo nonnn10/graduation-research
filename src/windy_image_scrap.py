@@ -86,7 +86,7 @@ def main(driver,atribute,abspath):
             # print(img_name)
             print(img_name_date)
             sfile = driver.get_screenshot_as_file(dir_pass+now_date+'/'+atribute+'/'+str(img_name_date)+'.png')
-            print(sfile)
+            print("img save "+str(sfile))
             #with open('../data/windy_img/'+img_name+'.png', 'wb') as f:
             #    f.write(png)
 

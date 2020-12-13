@@ -194,7 +194,7 @@ def datewrite (route_start,result_data,route_name,csv_file_name,file_name,writte
         書き込みモードを選択 a,追記　w,新しく上書き
     """
     #----------------------#
-    file_name = "2017"          #2017年で一纏めにしてみたい
+    #file_name = "2020"          #2017年で一纏めにしてみたい
     writte_mode = "w"           #追記
     #----------------------#
     start_cul = 0
@@ -379,7 +379,7 @@ def name_data_append(driver):
 #     return name,data
 
 if __name__ == '__main__':
-    driver = start_up(headless_active=True, web_url='http://www.aneikankou.co.jp/timetables')
+    driver = start_up(headless_active=True, web_url='http://www.aneikankou.co.jp/timetables',abspath='/Users/nosuke/')
     main(driver)
 
 

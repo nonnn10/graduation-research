@@ -2,6 +2,7 @@ from selenium import webdriver
 import csv
 import time
 from selenium.webdriver.chrome.options import Options
+import re
 
 """
 安永観光から欠航情報データを取得するスクリプト
@@ -211,7 +212,7 @@ def datewrite (route_start,result_data,route_name,csv_file_name,file_name,writte
                 
                 if start_cul == 0:
                     if cul_num == 0:
-                        csvlist.append(coron_trans(j.text))     #時間を追加
+                        csvlist.append(japan_lan_del(coron_trans(j.text)))     #時間を追加
                         cnt=cnt+1
                     elif cul_num == 1:
                         csvlist.append(j.text)          #運航状況の通常運航、欠航の追加
@@ -230,7 +231,7 @@ def datewrite (route_start,result_data,route_name,csv_file_name,file_name,writte
                         cnt=cnt+1
                 elif start_cul == 1:
                     if cul_num == 2:
-                        csvlist.append(coron_trans(j.text))     #時間を追加
+                        csvlist.append(japan_lan_del(coron_trans(j.text)))     #時間を追加
                         cnt=cnt+1
                     elif cul_num == 3:
                         csvlist.append(j.text)          #運航状況の通常運航、欠航の追加
@@ -265,6 +266,24 @@ def coron_trans(data):
     """
     data = data.replace('：', ':')
 
+    return data
+
+def japan_lan_del(data):
+    """
+    時間部分の日本語を削除する関数
+
+    parameters
+    ----------
+    data : str 
+        12:20大原経由 -> 12:20に変換
+
+    return
+    ------
+    data : str
+        運行時間
+    """
+
+    data = re.sub(r"(\d*:\d*)(\D*)","\\1",data)
     return data
 
 

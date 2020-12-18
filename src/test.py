@@ -10,7 +10,8 @@ import file_date
 import os
 import hour_windy_img as hwi
 import windy_image_scrap as wis
-
+import exe
+"""
 dir_pass = "../data/windy_img/test.txt"#"/Users/e175755/graduation-research/data/windy_img/test.txt"
 print('getcwd:      ', os.getcwd())
 print('__file__:    ', __file__)
@@ -33,6 +34,7 @@ print("/"+"/".join(dl[0:x]))
 
 def abspath_top():
     """
+"""
     絶対パスを取得しその中のgraduation-researchより上の階層のpathを出力
 
     parameters
@@ -43,6 +45,7 @@ def abspath_top():
     top_path : str
         graduation-researchより上のpath
     """
+"""
     apath=os.getcwd()       #スクリプトを実行した場所の絶対path
     dl = apath.split("/")   #ディレクトリパスを"/"で分割
     dl.remove("")           #dlの中に""がある場合は削除
@@ -57,3 +60,7 @@ def abspath_top():
 
 abspath = abspath_top()
 print(abspath)
+"""
+x = "12:20大原経由"
+y = exe.japan_lan_del(x)
+print(y)

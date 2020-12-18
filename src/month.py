@@ -10,7 +10,7 @@ from selenium.webdriver.chrome.options import Options
 import exe      #ファイルのコードをname==mainにしていないとimport時に実行されてしまう
 
 def main():
-    driver = exe.start_up(headless_active=True,web_url='http://www.aneikankou.co.jp/timetables?date=2020-08-02',abspath='/Users/nosuke')
+    driver = exe.start_up(headless_active=True,web_url='http://www.aneikankou.co.jp/timetables?date=2020-11-14',abspath='/Users/nosuke')
     for i in range(365):          #rangeで取得する日付データ数を指定
         # csv_file_name = exe.date_result(driver)
 

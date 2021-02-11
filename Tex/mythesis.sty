@@ -1,0 +1,156 @@
+%
+%  卒業論文スタイルファイル(mythesis.sty)
+%        version 1.0e   
+%
+% ver 1.0e 02/07/2000 since  
+% usage:
+
+%\documentclass[a4j]{jreport}
+%\usepackage{master_paper}
+%
+%
+%\title{卒論タイトル \\ 長い}
+%\etitle{\pLaTeX2e  style test file for Teri's thesis } 
+%\year{平成11年度}
+%\belongto{琉球大学大学工学部\\ 情報工学科}
+%\author{豊平 絵梨}
+%
+%\begin{document}
+%
+%\maketitle
+%
+%%要旨
+%\input{abstract.tex}
+%
+%%目次
+%\tableofcontents
+%							
+%%図目次
+%\listoffigures
+%
+%%表目次
+%\listoftables
+%
+%%第一章
+%\input{chapter1.tex}
+%%chapter1.texの\chapter{}の後ろに次のコマンドを追加してください。
+%%ページカウントがリセットされ、ページ数がアラビア文字になります。
+%%  \pagenumbering{arabic}
+%%第二章
+%\input{chapter2.tex}
+%%第三章
+%\input{chapter3.tex}
+%
+%%付録
+%\input{appendix.tex}
+%
+%%謝辞
+%%\input{thanx.tex}
+%
+%%参考文献
+%\input{biblography.tex}
+%
+%\end{document}
+
+
+%長さ設定
+%\setlength{\topmargin}{-30mm}
+%\addtolength{\oddsidemargin}{-15mm}
+%\addtolength{\textwidth}{60mm}
+
+\topmargin -1in \addtolength{\topmargin}{35mm}
+\headheight 0mm
+\headsep 0mm
+\oddsidemargin -1in \addtolength{\oddsidemargin}{30mm}
+%\evensidemargin -1in \addtolength{\evensidemargin}{8mm}
+\textwidth 160mm
+\textheight 230mm
+%\footheight 0mm
+%\footskip 0mm
+%\pagestyle{empty}
+
+
+%年度
+\def\@year{}
+\def\year#1{\gdef\@year{#1}}
+%英文タイトル
+\def\@etitle{}
+\def\etitle#1{\gdef\@etitle{#1}}
+%アイコン
+\def\@icon{}
+\def\icon#1{\gdef\@icon{#1}}
+%所属
+\def\@belongto{}
+\def\belongto#1{\gdef\@belongto{#1}}
+
+%表紙
+\renewcommand{\maketitle}{%
+\newpage\null
+\thispagestyle{empty}
+\vskip 0cm%
+\begin{center}%
+\let\footnote\thanks
+  {\huge \@year \par}%
+    \vskip 3em%
+  {\Huge \@title \par}%
+    \vskip 1em%
+  {\huge \@etitle \par}%
+    \vskip 8em%
+  {\huge \@icon \par}%
+    \vskip 0.5em%
+  {\huge \@belongto \par}%
+    \vskip 1.0em%
+  {\huge \@author \par}%
+
+\end{center}%
+\par\vskip 1.5em
+}
+
+
+%abstract
+\renewenvironment{abstract}{%
+      \titlepage
+      \thispagestyle{empty}
+      \null\vfil
+      \@beginparpenalty\@lowpenalty
+      {\Huge \bfseries \abstractname}%
+      \begin{center}%
+        \@endparpenalty\@M
+      \end{center}
+}%
+
+
+%目次
+\renewcommand{\tableofcontents}{%
+  \pagestyle{plain}
+  \if@twocolumn\@restonecoltrue\onecolumn
+  \else\@restonecolfalse\fi
+  \chapter*{\contentsname
+    \@mkboth{\contentsname}{\contentsname}%
+  }  \pagenumbering{roman}\@starttoc{toc}%
+  \if@restonecol\twocolumn\fi
+}
+
+%章
+\renewcommand{\chapter}{%
+  \pagestyle{plain}
+  \if@openright\cleardoublepage\else\clearpage\fi
+  \thispagestyle{jpl@in}%
+  \global\@topnum\z@
+  \@afterindentfalse
+  \secdef\@chapter\@schapter}
+
+
+\renewcommand{\prepartname}{} %\renewcommand{\prepartname}{第}
+\renewcommand{\postpartname}{部}
+\renewcommand{\prechaptername}{第}%\renewcommand{\prechaptername}{第}
+\renewcommand{\postchaptername}{章}
+\renewcommand{\contentsname}{目 次}
+\renewcommand{\listfigurename}{図 目 次}
+\renewcommand{\listtablename}{表 目 次}
+\renewcommand{\bibname}{参考文献}
+\renewcommand{\indexname}{索 引}
+\renewcommand{\figurename}{図}
+\renewcommand{\tablename}{表}
+\renewcommand{\appendixname}{付 録}
+\renewcommand{\abstractname}{要 旨}

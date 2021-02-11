@@ -1,0 +1,87 @@
+\documentclass[a4j,12pt]{jreport}
+%\usepackage[dvips]{graphicx}
+\usepackage[dvipdfmx]{graphicx}%pdfの図を用いるため
+\usepackage{mythesis}
+\usepackage{multirow}
+\usepackage{here}
+\usepackage{url}%urlを使いたい
+\usepackage{here}%図の位置を固定するために(文字と入れ替わらないように)
+\usepackage{comment}
+%\renewcommand{\abstractname}{abstract}
+
+\setlength{\itemsep}{-1zh}
+\title{
+船舶の運航状況予測\\
+Forecasting vessel operations
+}
+\icon{
+		\includegraphics[width=60mm,bb=0 0 550 550]{fig/ryukyu.pdf}
+	}
+\year{令和2年度 卒業論文}
+
+%公開暗号方式を用いたSSH認証によるアカウント作成の簡略化\\
+%Simplify Creating account by \\
+%SSH authentication using public-key cryptography
+
+\belongto{琉球大学工学部工学科知能情報コース}
+\author{175755F 大城紳之亮  \\ 指導教員 {當間愛晃} }
+%%
+%% プリアンブルに記述
+%% Figure 環境中で Table 環境の見出しを表示・カウンタの操作に必要
+%%
+\makeatletter
+\newcommand{\figcaption}[1]{\def\@captype{figure}\caption{#1}}
+\newcommand{\tblcaption}[1]{\def\@captype{table}\caption{#1}}
+\makeatother
+\setlength\abovecaptionskip{0pt}
+
+\begin{document}
+
+% タイトル
+\maketitle
+\baselineskip 17pt plus 1pt minus 1pt
+
+\pagenumbering{roman}
+\setcounter{page}{0}
+%要旨は論文全体の要約です。予測するという話だけではなく結果、考察、今後の課題も述べよう。日本語でもいいです。あと書く場所は目次の前にしよう。
+\begin{abstract}
+　近年、地球温暖化等の影響により台風や異常気象など天候の変化が激しく、これらの天候の変化は、船舶の運航に支障をきたす。船舶の欠航情報は出航当日にしか発表されないため、利用者が今後のスケジュールを計画する際に支障が出る可能性がある。本研究では，気象予報図，気象データ，欠航データを用いて，機械学習を適用して運航予測を行うことでスケジュール組み立ての一助となることを目指す。本研究で対象とした八重山諸島周辺の航路の欠航データと気象画像、気象値をそれぞれ別のデータセットとして構築し、教師データと特徴量を日付別にスライドさせ航路ごとにモデルを作成した。数値モデルの実験結果において、散布図を確認することでモデルの重要視している特徴を確認できた。画像モデルでの実験結果では、どのような画像がモデルに対して影響を与えているか示した。また、特定の航路での精度評価から画像の周期性があることが明らかになった。今後の課題として、データセットの作成、モデルにおいて数値、画像の特徴を考慮する必要がある。
+\end{abstract} 
+
+\tableofcontents	% 目次
+\listoffigures		% 図目次
+\listoftables		% 表目次
+
+%以下のように、章ごとに個別の tex ファイルを作成して、
+% main.tex をコンパイルして確認する。
+%章分けは個人で違うので下のフォーマットを参考にして下さい。
+\renewcommand{\abstractname}{abstract}
+
+
+
+% はじめに
+\input{chapter1.tex}
+
+% 基礎概念
+\input{chapter2.tex}
+
+%提案手法
+\input{chapter3.tex}
+
+% 実験
+\input{chapter4.tex}
+
+
+% 今後の課題
+\input{future.tex}
+
+% 参考文献
+\input{bibliography.tex}
+
+% 謝辞
+\input{thanks.tex}
+
+% 付録
+%\input{appendix.tex}
+
+\end{document}

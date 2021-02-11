@@ -1,0 +1,191 @@
+\relax 
+\citation{Related-Research2}
+\citation{rainfull}
+\citation{Yann LeCun}
+\citation{anei}
+\citation{anei}
+\citation{earth}
+\citation{stan}
+\citation{Related-Research1}
+\citation{Related-Research1}
+\citation{nowphas}
+\citation{windy}
+\citation{anei}
+\@writefile{toc}{\contentsline {chapter}{\numberline {第1章}はじめに}{1}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{chap:introduction}{{1}{1}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.1}背景と目的}{1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1.2}関連研究}{1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.1}欠航判断においての研究事例}{1}\protected@file@percent }
+\citation{Related-Research2}
+\citation{MRMA}
+\citation{Related-Research2}
+\citation{rainfull}
+\citation{optical-flow}
+\citation{persistence}
+\citation{HRRR}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.2}降雨レーダー画像を入力とした機械学習での予測においての研究事例}{2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces 1時間後先の降雨予測比較\cite  {Related-Research2}}}{2}\protected@file@percent }
+\newlabel{R_r_r}{{1.1}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces CNNモデルの詳細\cite  {rainfull}}}{2}\protected@file@percent }
+\newlabel{rainfull_m}{{1.2}{2}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.3}本研究の位置づけ}{3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1.4}論文の構成}{3}\protected@file@percent }
+\citation{Yann LeCun}
+\citation{Yann LeCun}
+\@writefile{toc}{\contentsline {chapter}{\numberline {第2章}基礎概念}{4}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{chap:concept}{{2}{4}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}緒言}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}CNN}{4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces CNNの例\cite  {Yann LeCun}}}{4}\protected@file@percent }
+\newlabel{lenet}{{2.1}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}畳み込み層}{4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces 畳み込み層の出力例}}{5}\protected@file@percent }
+\newlabel{tatami}{{2.2}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}プリーング層}{5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces プーリング層の出力例}}{5}\protected@file@percent }
+\newlabel{pooling}{{2.3}{5}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}LightGBM}{5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}決定木}{5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces 決定木の例}}{6}\protected@file@percent }
+\newlabel{kettei}{{2.4}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}アンサンブル学習}{6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces アンサンブルの例}}{6}\protected@file@percent }
+\newlabel{ensemble}{{2.5}{6}}
+\citation{windy}
+\citation{anei}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.3}勾配ブースティング}{7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}windy.com}{7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}安栄観光}{7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.6}予測精度の評価指標}{7}\protected@file@percent }
+\citation{anei}
+\citation{windy}
+\citation{anei}
+\citation{windy}
+\citation{windy}
+\citation{stan}
+\citation{anei}
+\@writefile{toc}{\contentsline {chapter}{\numberline {第3章}提案手法}{8}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{chap:propose}{{3}{8}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}データ作成}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}安栄観光、windy.comからデータの取得}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}データセットの作成}{8}\protected@file@percent }
+\citation{anei}
+\citation{anei}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces 安栄観光\cite  {anei}の航路図}}{9}\protected@file@percent }
+\newlabel{aneikouro}{{3.1}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces 安栄観光\cite  {anei}の航路便運行状況}}{9}\protected@file@percent }
+\newlabel{anei_label}{{3.2}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces 数値データの作成例}}{10}\protected@file@percent }
+\newlabel{value_data}{{3.3}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces 風速画像データの作成例}}{10}\protected@file@percent }
+\newlabel{wind_data}{{3.4}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces 波高画像データの作成例}}{10}\protected@file@percent }
+\newlabel{wave_data}{{3.5}{10}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}運航状況の分類手法}{10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}学習モデル}{10}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces 数値データの学習フロー}}{11}\protected@file@percent }
+\newlabel{value_flow}{{3.6}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces 画像データの学習フロー}}{11}\protected@file@percent }
+\newlabel{img_flow}{{3.7}{11}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {第4章}実験}{12}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{chap:poordirection}{{4}{12}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}実験結果}{12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}数値データによる結果}{12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces 鳩間島航路-鳩間発}}{12}\protected@file@percent }
+\newlabel{value_hatoma}{{4.1}{12}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces 黒島航路-黒島発}}{12}\protected@file@percent }
+\newlabel{value_kurosima}{{4.2}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}画像データによる結果}{12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces 波高レイヤー(波照間航路-波照発)}}{13}\protected@file@percent }
+\newlabel{img_wave_hateruma}{{4.3}{13}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.4}{\ignorespaces 波高レイヤー(鳩間島航路-鳩間発)}}{13}\protected@file@percent }
+\newlabel{img_wave_hatoma}{{4.4}{13}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.5}{\ignorespaces 波高レイヤー(竹富航路-竹富発)}}{13}\protected@file@percent }
+\newlabel{img_wave_taketomi}{{4.5}{13}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.6}{\ignorespaces 風速レイヤー(波照間航路-波照発)}}{14}\protected@file@percent }
+\newlabel{img_wind_hateruma}{{4.6}{14}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.7}{\ignorespaces 風速レイヤー(西表上原航路-西表上原発)}}{14}\protected@file@percent }
+\newlabel{img_wind_iriue}{{4.7}{14}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.8}{\ignorespaces 風速レイヤー(竹富航路-竹富発)}}{14}\protected@file@percent }
+\newlabel{img_wind_taketomi}{{4.8}{14}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}考察}{14}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}数値データの考察}{14}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces 鳩間島航路1日前モデルの予測ラベル}}{15}\protected@file@percent }
+\newlabel{hatoma_1_scatter_pred}{{4.1}{15}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces 鳩間島航路9日前モデルの予測ラベル}}{16}\protected@file@percent }
+\newlabel{hatoma_9_scatter_pred}{{4.2}{16}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces 黒島航路当日モデルの予測ラベル別}}{17}\protected@file@percent }
+\newlabel{kurosima_0_scatter_pred}{{4.3}{17}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces 黒島航路1日前モデルの予測ラベル別}}{18}\protected@file@percent }
+\newlabel{kurosima_1_scatter_pred}{{4.4}{18}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces 黒島航路1日前モデルの真値ラベル別}}{19}\protected@file@percent }
+\newlabel{kurosima_1_scatter_ture}{{4.5}{19}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}画像データの考察}{19}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{波高レイヤー画像}{19}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces 波照間航路1日前モデルの混同行列}}{20}\protected@file@percent }
+\newlabel{hateruma_1_conf}{{4.6}{20}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.7}{\ignorespaces 波照間航路1日前モデルのTP画像例}}{21}\protected@file@percent }
+\newlabel{hateruma_1_TP}{{4.7}{21}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.8}{\ignorespaces 波照間航路1日前モデルのFN画像}}{21}\protected@file@percent }
+\newlabel{hateruma_1_FN}{{4.8}{21}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.9}{\ignorespaces 波照間航路1日前モデルのFP画像例}}{21}\protected@file@percent }
+\newlabel{hateruma_1_FP}{{4.9}{21}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.10}{\ignorespaces 波照間航路1日前モデルのTN画像例}}{21}\protected@file@percent }
+\newlabel{hateruma_1_TN}{{4.10}{21}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.11}{\ignorespaces FP画像1日後の教師ラベル当日の画像}}{21}\protected@file@percent }
+\newlabel{hateruma_1_FP_1}{{4.11}{21}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.12}{\ignorespaces FN画像1日後の教師ラベル当日の画像}}{21}\protected@file@percent }
+\newlabel{hateruma_1_FN_1}{{4.12}{21}}
+\citation{stan}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.13}{\ignorespaces 波照間航路2日前モデルの混同行列}}{22}\protected@file@percent }
+\newlabel{hateruma_2_conf}{{4.13}{22}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.14}{\ignorespaces 教師ラベル:運航 1}}{22}\protected@file@percent }
+\newlabel{aka}{{4.14}{22}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.15}{\ignorespaces 教師ラベル:運航 2}}{22}\protected@file@percent }
+\newlabel{unkou_ao}{{4.15}{22}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.16}{\ignorespaces 鳩間島航路当日モデルの混同行列}}{23}\protected@file@percent }
+\newlabel{hatoma_0_conf}{{4.16}{23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.17}{\ignorespaces 鳩間島航路当日モデルのTP画像例}}{23}\protected@file@percent }
+\newlabel{hatoma_0_TP}{{4.17}{23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.18}{\ignorespaces 鳩間島航路当日モデルのFN画像}}{23}\protected@file@percent }
+\newlabel{hatoma_0_FN}{{4.18}{23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.19}{\ignorespaces 鳩間島航路当日モデルのFP画像例}}{23}\protected@file@percent }
+\newlabel{hatoma_0_FP}{{4.19}{23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.20}{\ignorespaces 鳩間島航路当日モデルのTN画像例}}{23}\protected@file@percent }
+\newlabel{hatoma_0_TN}{{4.20}{23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.21}{\ignorespaces 教師ラベル:欠航}}{24}\protected@file@percent }
+\newlabel{hatoma_0_FN_setu}{{4.21}{24}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.22}{\ignorespaces 教師ラベル:運航}}{24}\protected@file@percent }
+\newlabel{hatoma_0_FP_setu}{{4.22}{24}}
+\@writefile{toc}{\contentsline {subsubsection}{風速レイヤー画像}{24}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.23}{\ignorespaces 波照間航路1日前モデルの混同行列}}{24}\protected@file@percent }
+\newlabel{wind_hateruma_1_conf}{{4.23}{24}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.24}{\ignorespaces 波照間航路2日前モデルの混同行列}}{24}\protected@file@percent }
+\newlabel{wind_hateruma_2_conf}{{4.24}{24}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}考察まとめ}{25}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {第5章}結論}{26}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}まとめ}{26}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}今後の課題}{26}\protected@file@percent }
+\bibcite{earth}{1}
+\bibcite{Related-Research1}{2}
+\bibcite{Related-Research2}{3}
+\bibcite{rainfull}{4}
+\bibcite{nowphas}{5}
+\bibcite{anei}{6}
+\bibcite{windy}{7}
+\bibcite{stan}{8}
+\bibcite{optical-flow}{9}
+\bibcite{persistence}{10}
+\bibcite{MRMA}{11}
+\bibcite{HRRR}{12}
+\bibcite{Yann LeCun}{13}

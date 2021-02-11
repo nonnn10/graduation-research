@@ -1,0 +1,17 @@
+This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.euc) (TeX Live 2020) (preloaded format=eptex 2020.8.20)  7 FEB 2021 09:55
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**chapter4.tex
+(./chapter4.tex
+./chapter4.tex:1: Undefined control sequence.
+l.1 \chapter
+            {実験}
+? 
+./chapter4.tex:1: Emergency stop.
+l.1 \chapter
+            {実験}
+End of file on the terminal!
+
+No pages of output.

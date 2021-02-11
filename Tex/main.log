@@ -1,0 +1,396 @@
+This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.euc) (TeX Live 2020) (preloaded format=platex 2020.8.20)  11 FEB 2021 07:27
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**main.tex
+(./main.tex
+pLaTeX2e <2020-02-02>+3 (based on LaTeX2e <2020-02-02> patch level 5)
+L3 programming layer <2020-03-06>
+(/usr/local/texlive/2020/texmf-dist/tex/platex/base/jreport.cls
+Document Class: jreport 2020/01/03 v1.8e Standard pLaTeX class
+\c@@paper=\count166
+(/usr/local/texlive/2020/texmf-dist/tex/platex/base/jsize12.clo
+File: jsize12.clo 2020/01/03 v1.8e Standard pLaTeX file (size option)
+)
+\c@part=\count167
+\c@chapter=\count168
+\c@section=\count169
+\c@subsection=\count170
+\c@subsubsection=\count171
+\c@paragraph=\count172
+\c@subparagraph=\count173
+\c@figure=\count174
+\c@table=\count175
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\symmincho=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `mincho' in version `bold'
+(Font)                  JY1/mc/m/n --> JY1/gt/m/n on input line 704.
+\toclineskip=\dimen150
+\@lnumwidth=\dimen151
+\bibindent=\dimen152
+\heisei=\count176
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: dvipdfmx.def on input line 105.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-def/dvipdfmx.def
+File: dvipdfmx.def 2017/06/24 v5.0g Graphics/color driver for dvipdfmx
+))
+\Gin@req@height=\dimen153
+\Gin@req@width=\dimen154
+)
+(./mythesis.sty)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2019/05/31 v2.5 Span multiple rows of a table
+\multirow@colwidth=\skip49
+\multirow@cntb=\count177
+\multirow@dima=\skip50
+\bigstrutjot=\dimen155
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/here/here.sty)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count178
+\float@exts=\toks17
+\float@box=\box61
+\@float@everytoks=\toks18
+\@floatcapt=\box62
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip16
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/comment/comment.sty
+\CommentStream=\write3
+
+Excluding comment 'comment')
+(/usr/local/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-dvips.def
+File: l3backend-dvips.def 2020-03-12 L3 backend support: dvips
+\l__pdf_internal_box=\box63
+\g__pdf_backend_object_int=\count179
+\l__pdf_backend_content_box=\box64
+\l__pdf_backend_model_box=\box65
+\g__pdf_backend_annotation_int=\count180
+\g__pdf_backend_link_int=\count181
+\g__pdf_backend_link_sf_int=\count182
+)
+(./main.aux)
+\openout1 = `main.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+File: fig/ryukyu.pdf Graphic file (type pdf)
+<fig/ryukyu.pdf>
+ [0
+
+]
+LaTeX Font Info:    Font shape `JT1/mc/b/n' in size <24.88> not available
+(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 47.
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <24.88> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 47.
+LaTeX Font Info:    Font shape `JY1/mc/b/n' in size <24.88> not available
+(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 47.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <24.88> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 47.
+ [1] (./main.toc
+LaTeX Font Info:    Font shape `JT1/mc/b/n' in size <12> not available
+(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 1.
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <12> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 1.
+LaTeX Font Info:    Font shape `JY1/mc/b/n' in size <12> not available
+(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 1.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <12> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 1.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 2.
+ [1
+
+])
+\tf@toc=\write4
+\openout4 = `main.toc'.
+
+ [2] (./main.lof [3
+
+])
+\tf@lof=\write5
+\openout5 = `main.lof'.
+
+ [4] (./main.lot)
+\tf@lot=\write6
+\openout6 = `main.lot'.
+
+
+(./chapter1.tex [5
+
+]
+第 1 章
+LaTeX Font Info:    Font shape `JT1/mc/b/n' in size <17.28> not available
+(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 15.
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <17.28> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 15.
+LaTeX Font Info:    Font shape `JY1/mc/b/n' in size <17.28> not available
+(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 15.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <17.28> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 15.
+LaTeX Font Info:    Font shape `JT1/mc/b/n' in size <14.4> not available
+(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 20.
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <14.4> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 20.
+LaTeX Font Info:    Font shape `JY1/mc/b/n' in size <14.4> not available
+(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 20.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 20.
+[1
+
+]
+File: fig/chapter1/Related_research_rainfall.png Graphic file (type bmp)
+<fig/chapter1/Related_research_rainfall.png>
+File: fig/chapter1/rainfull_model.png Graphic file (type bmp)
+<fig/chapter1/rainfull_model.png>
+ [2]) (./chapter2.tex [3]
+第 2 章
+File: fig/chapter2/Lenet-5.png Graphic file (type bmp)
+<fig/chapter2/Lenet-5.png>
+
+Overfull \hbox (10.49591pt too wide) in paragraph at lines 13--14
+ [][] 
+ []
+
+File: fig/chapter2/tatamikomi.png Graphic file (type bmp)
+<fig/chapter2/tatamikomi.png>
+[4
+
+]
+File: fig/chapter2/pooling.png Graphic file (type bmp)
+<fig/chapter2/pooling.png>
+File: fig/chapter2/ketteigi.png Graphic file (type bmp)
+<fig/chapter2/ketteigi.png>
+ [5]
+File: fig/chapter2/ensemble.png Graphic file (type bmp)
+<fig/chapter2/ensemble.png>
+ [6]) (./chapter3.tex [7]
+第 3 章
+[8
+
+]
+File: fig/chapter3/aneikouro.png Graphic file (type bmp)
+<fig/chapter3/aneikouro.png>
+File: fig/chapter3/anei_sample_data.png Graphic file (type bmp)
+<fig/chapter3/anei_sample_data.png>
+File: fig/chapter3/value_dataset.png Graphic file (type bmp)
+<fig/chapter3/value_dataset.png>
+ [9]
+File: fig/chapter3/wind_speed_data.png Graphic file (type bmp)
+<fig/chapter3/wind_speed_data.png>
+File: fig/chapter3/wave_height_data.png Graphic file (type bmp)
+<fig/chapter3/wave_height_data.png>
+
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 40--54
+[][]$[]$[] []$[]$[] 
+ []
+
+[10]
+File: fig/chapter3/value_flow.png Graphic file (type bmp)
+<fig/chapter3/value_flow.png>
+File: fig/chapter3/img_flow.png Graphic file (type bmp)
+<fig/chapter3/img_flow.png>
+) (./chapter4.tex [11]
+第 4 章
+
+Overfull \hbox (15.91664pt too wide) in paragraph at lines 12--55
+ [][][] 
+ []
+
+
+Overfull \hbox (15.91664pt too wide) in paragraph at lines 67--110
+ [][][] 
+ []
+
+[12
+
+]
+Overfull \hbox (15.91664pt too wide) in paragraph at lines 137--180
+ [][][] 
+ []
+
+[13] [14]
+File: fig/chapter4/hatoma_1_pred.png Graphic file (type bmp)
+<fig/chapter4/hatoma_1_pred.png>
+
+Overfull \hbox (50.64592pt too wide) in paragraph at lines 213--214
+ [][] 
+ []
+
+File: fig/chapter4/hatoma_9_pred.png Graphic file (type bmp)
+<fig/chapter4/hatoma_9_pred.png>
+
+Overfull \hbox (51.14778pt too wide) in paragraph at lines 220--221
+ [][] 
+ []
+
+[15] [16]
+File: fig/chapter4/kurosima_0_pred.png Graphic file (type bmp)
+<fig/chapter4/kurosima_0_pred.png>
+
+Overfull \hbox (51.14778pt too wide) in paragraph at lines 230--231
+ [][] 
+ []
+
+File: fig/chapter4/kurosima_1_pred.png Graphic file (type bmp)
+<fig/chapter4/kurosima_1_pred.png>
+
+Overfull \hbox (51.9006pt too wide) in paragraph at lines 237--238
+ [][] 
+ []
+
+[17]
+File: fig/chapter4/kurosima_1_ture.png Graphic file (type bmp)
+<fig/chapter4/kurosima_1_ture.png>
+
+Overfull \hbox (50.64592pt too wide) in paragraph at lines 244--245
+ [][] 
+ []
+
+[18] [19]
+File: fig/chapter4/wave_hateruma_1/hateruma_1_conf.png Graphic file (type bmp)
+<fig/chapter4/wave_hateruma_1/hateruma_1_conf.png>
+ [20]
+File: fig/chapter4/wave_hateruma_1/TP.png Graphic file (type bmp)
+<fig/chapter4/wave_hateruma_1/TP.png>
+File: fig/chapter4/wave_hateruma_1/FN.png Graphic file (type bmp)
+<fig/chapter4/wave_hateruma_1/FN.png>
+
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 265--281
+[][]$[]$[] []$[]$[] 
+ []
+
+File: fig/chapter4/wave_hateruma_1/FP.png Graphic file (type bmp)
+<fig/chapter4/wave_hateruma_1/FP.png>
+File: fig/chapter4/wave_hateruma_1/TN.png Graphic file (type bmp)
+<fig/chapter4/wave_hateruma_1/TN.png>
+
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 284--300
+[][]$[]$[] []$[]$[] 
+ []
+
+File: fig/chapter4/wave_hateruma_1/FP_1.png Graphic file (type bmp)
+<fig/chapter4/wave_hateruma_1/FP_1.png>
+File: fig/chapter4/wave_hateruma_1/FN_1.png Graphic file (type bmp)
+<fig/chapter4/wave_hateruma_1/FN_1.png>
+
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 303--319
+[][]$[]$[] []$[]$[] 
+ []
+
+[21]
+File: fig/chapter4/wave_hateruma_2/hateruma_route_hateruma_dep_2.png Graphic fi
+le (type bmp)
+<fig/chapter4/wave_hateruma_2/hateruma_route_hateruma_dep_2.png>
+File: fig/chapter4/wave_hateruma_2/unkou_aka.png Graphic file (type bmp)
+<fig/chapter4/wave_hateruma_2/unkou_aka.png>
+File: fig/chapter4/wave_hateruma_2/unkou_ao.png Graphic file (type bmp)
+<fig/chapter4/wave_hateruma_2/unkou_ao.png>
+
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 336--352
+[][]$[]$[] []$[]$[] 
+ []
+
+File: fig/chapter4/wave_hatoma_0/hatoma_route_hatoma_dep_0.png Graphic file (ty
+pe bmp)
+<fig/chapter4/wave_hatoma_0/hatoma_route_hatoma_dep_0.png>
+[22]
+File: fig/chapter4/wave_hatoma_0/TP.png Graphic file (type bmp)
+<fig/chapter4/wave_hatoma_0/TP.png>
+File: fig/chapter4/wave_hatoma_0/FN.png Graphic file (type bmp)
+<fig/chapter4/wave_hatoma_0/FN.png>
+
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 365--381
+[][]$[]$[] []$[]$[] 
+ []
+
+File: fig/chapter4/wave_hatoma_0/FP.png Graphic file (type bmp)
+<fig/chapter4/wave_hatoma_0/FP.png>
+File: fig/chapter4/wave_hatoma_0/TN.png Graphic file (type bmp)
+<fig/chapter4/wave_hatoma_0/TN.png>
+
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 384--400
+[][]$[]$[] []$[]$[] 
+ []
+
+File: fig/chapter4/wave_hatoma_0/FN_setu.png Graphic file (type bmp)
+<fig/chapter4/wave_hatoma_0/FN_setu.png>
+File: fig/chapter4/wave_hatoma_0/unkou_FP_setu.png Graphic file (type bmp)
+<fig/chapter4/wave_hatoma_0/unkou_FP_setu.png>
+
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 403--419
+[][]$[]$[] []$[]$[] 
+ []
+
+[23]
+File: fig/chapter4/wind_hateruma_1/hateruma_route_hateruma_dep_1.png Graphic fi
+le (type bmp)
+<fig/chapter4/wind_hateruma_1/hateruma_route_hateruma_dep_1.png>
+File: fig/chapter4/wind_hateruma_2/hateruma_route_hateruma_dep_2.png Graphic fi
+le (type bmp)
+<fig/chapter4/wind_hateruma_2/hateruma_route_hateruma_dep_2.png>
+
+Overfull \hbox (2.61108pt too wide) in paragraph at lines 429--445
+[][]$[]$[] []$[]$[] 
+ []
+
+[24]) (./future.tex [25]
+第 5 章
+) (./bibliography.tex [26
+
+] [27
+
+]) (./thanks.tex [28]) [29
+
+] (./main.aux) ) 
+Here is how much of TeX's memory you used:
+ 1407 strings out of 481140
+ 23517 string characters out of 5917417
+ 285751 words of memory out of 5000000
+ 17390 multiletter control sequences out of 15000+600000
+ 544564 words of font info for 72 fonts, out of 8000000 for 9000
+ 929 hyphenation exceptions out of 8191
+ 30i,15n,25p,1012b,428s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on main.dvi (36 pages, 99036 bytes).

@@ -1,0 +1,43 @@
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces 1時間後先の降雨予測比較\cite {Related-Research2}}}{2}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces CNNモデルの詳細\cite {rainfull}}}{2}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces CNNの例\cite {Yann LeCun}}}{4}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces 畳み込み層の出力例}}{5}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces プーリング層の出力例}}{5}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces 決定木の例}}{6}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces アンサンブルの例}}{6}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces 安栄観光\cite {anei}の航路図}}{9}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces 安栄観光\cite {anei}の航路便運行状況}}{9}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces 数値データの作成例}}{10}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces 風速画像データの作成例}}{10}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces 波高画像データの作成例}}{10}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces 数値データの学習フロー}}{11}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces 画像データの学習フロー}}{11}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces 鳩間島航路1日前モデルの予測ラベル}}{15}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces 鳩間島航路9日前モデルの予測ラベル}}{16}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces 黒島航路当日モデルの予測ラベル別}}{17}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces 黒島航路1日前モデルの予測ラベル別}}{18}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces 黒島航路1日前モデルの真値ラベル別}}{19}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces 波照間航路1日前モデルの混同行列}}{20}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces 波照間航路1日前モデルのTP画像例}}{21}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces 波照間航路1日前モデルのFN画像}}{21}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces 波照間航路1日前モデルのFP画像例}}{21}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces 波照間航路1日前モデルのTN画像例}}{21}%
+\contentsline {figure}{\numberline {4.11}{\ignorespaces FP画像1日後の教師ラベル当日の画像}}{21}%
+\contentsline {figure}{\numberline {4.12}{\ignorespaces FN画像1日後の教師ラベル当日の画像}}{21}%
+\contentsline {figure}{\numberline {4.13}{\ignorespaces 波照間航路2日前モデルの混同行列}}{22}%
+\contentsline {figure}{\numberline {4.14}{\ignorespaces 教師ラベル:運航 1}}{22}%
+\contentsline {figure}{\numberline {4.15}{\ignorespaces 教師ラベル:運航 2}}{22}%
+\contentsline {figure}{\numberline {4.16}{\ignorespaces 鳩間島航路当日モデルの混同行列}}{23}%
+\contentsline {figure}{\numberline {4.17}{\ignorespaces 鳩間島航路当日モデルのTP画像例}}{23}%
+\contentsline {figure}{\numberline {4.18}{\ignorespaces 鳩間島航路当日モデルのFN画像}}{23}%
+\contentsline {figure}{\numberline {4.19}{\ignorespaces 鳩間島航路当日モデルのFP画像例}}{23}%
+\contentsline {figure}{\numberline {4.20}{\ignorespaces 鳩間島航路当日モデルのTN画像例}}{23}%
+\contentsline {figure}{\numberline {4.21}{\ignorespaces 教師ラベル:欠航}}{24}%
+\contentsline {figure}{\numberline {4.22}{\ignorespaces 教師ラベル:運航}}{24}%
+\contentsline {figure}{\numberline {4.23}{\ignorespaces 波照間航路1日前モデルの混同行列}}{24}%
+\contentsline {figure}{\numberline {4.24}{\ignorespaces 波照間航路2日前モデルの混同行列}}{24}%
+\addvspace {10\p@ }

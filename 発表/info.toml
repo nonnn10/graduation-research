@@ -1,0 +1,30 @@
+author = "大城 紳之亮"
+user_id = "175733E"
+	
+title = "船舶の運航状況予測"
+title_en = "Forecasting vessel operations"
+ 
+abstract = """
+近年、地球温暖化などにより台風や異常気象などの天候の変化が激しく、これらの天候の変化は、船舶の運航に支障をきたす。船舶の欠航情報は出航当日にしか発表されないため、乗客が今後のスケジュールを計画する際に支障が可能性がある。本研究では、天気予報図，予報データ，交通状況を用いて、機械学習を適用して運航予測を行う。"""
+"""
+
+abstract_en = """
+In recent years, weather conditions such as typhoons and abnormal weather conditions are rapidly changing due to global warming and other reasons. These weather changes are considered to affect the operation of the ships. Since the information of vessel cancellation is announced only on the day of the vessel’s departure, it may cause anxiety to the passengers when they plan their future schedule. In this study, we apply machine learning to predict the operations by using the weather forecast maps, the forecast data and the traffic conditions.
+"""
+ 
+#卒論
+#thesis_pdf = "master_paper.pdf"
+thesis_pdf = "master_paper.pdf"
+ 
+#B4は必須
+#予稿 
+preliminary_pdf = "finalpre.pdf"
+ 
+#ポスター
+poster_pdf = ""
+ 
+#スライド
+slide_path = "卒論プレゼン.pptx"
+
+#自分の研究室の行の先頭の「#」を消してください
+supervisor = "當間研"
